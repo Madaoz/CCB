@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="OnlineExamSystemApi - idea" />
         <module name="OnlineExamSystemApi" />
+        <module name="OnlineExamSystemApi - idea" />
       </profile>
     </annotationProcessing>
   </component>
