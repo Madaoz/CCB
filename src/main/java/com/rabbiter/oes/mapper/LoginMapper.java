@@ -3,6 +3,7 @@ package com.rabbiter.oes.mapper;
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.Student;
 import com.rabbiter.oes.entity.Teacher;
+import com.rabbiter.oes.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,4 +21,7 @@ public interface LoginMapper {
     @Select("select studentId,studentName,grade,major,clazz,institute,tel," +
             "email,cardId,sex,role from student where studentId = #{username} and pwd = #{password}")
     public Student studentLogin(@Param("username") Integer username, @Param("password") String password);
+
+    @Select("select userId,userName,userUass,userInstNo,role,grade from userInfo where userId = #{username} and passWord = #{password}")
+    public User userLogin(@Param("username") String userName, @Param("password") String passWord);
 }

@@ -3,6 +3,7 @@ package com.rabbiter.oes.serviceimpl;
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.Student;
 import com.rabbiter.oes.entity.Teacher;
+import com.rabbiter.oes.entity.User;
 import com.rabbiter.oes.mapper.LoginMapper;
 import com.rabbiter.oes.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Student studentLogin(Integer username, String password) {
         return loginMapper.studentLogin(username,password);
+    }
+
+    @Override
+    public User userLogin(String userId,String passWord){
+        return loginMapper.userLogin(userId,passWord);
     }
 }

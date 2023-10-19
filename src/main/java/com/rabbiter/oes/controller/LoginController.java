@@ -22,44 +22,57 @@ public class LoginController {
 
     @PostMapping("/login")
     public ApiResult login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+        String userId = login.getUsername();
+        String passWord = login.getPassword();
 
-        Integer username = login.getUsername();
-        String password = login.getPassword();
-        Admin adminRes = loginService.adminLogin(username, password);
-        if (adminRes != null) {
-            Cookie token = new Cookie("rb_token", adminRes.getCardId());
+        User user = loginService.userLogin(userId,passWord);
+        if(user != null){
+            Cookie token = new Cookie("rb_token",user.getUserUass());
             token.setPath("/");
-            Cookie role = new Cookie("rb_role", "0");
+            Cookie role = new Cookie("rb_role",user.getRole());
             role.setPath("/");
 
             //将cookie对象加入response响应
             response.addCookie(token);
             response.addCookie(role);
-
-            return ApiResultHandler.buildApiResult(200, "请求成功", adminRes);
+            return ApiResultHandler.buildApiResult(200, "请求成功", user);
         }
 
-        Teacher teacherRes = loginService.teacherLogin(username,password);
-        if (teacherRes != null) {
-            Cookie token = new Cookie("rb_token", teacherRes.getCardId());
-            token.setPath("/");
-            Cookie role = new Cookie("rb_role", "1");
-            role.setPath("/");
-            response.addCookie(token);
-            response.addCookie(role);
-            return ApiResultHandler.buildApiResult(200, "请求成功", teacherRes);
-        }
-
-        Student studentRes = loginService.studentLogin(username,password);
-        if (studentRes != null) {
-            Cookie token = new Cookie("rb_token", studentRes.getCardId());
-            token.setPath("/");
-            Cookie role = new Cookie("rb_role", "2");
-            role.setPath("/");
-            response.addCookie(token);
-            response.addCookie(role);
-            return ApiResultHandler.buildApiResult(200, "请求成功", studentRes);
-        }
+//        Admin adminRes = loginService.adminLogin(username, password);
+//        if (adminRes != null) {
+//            Cookie token = new Cookie("rb_token", adminRes.getCardId());
+//            token.setPath("/");
+//            Cookie role = new Cookie("rb_role", "0");
+//            role.setPath("/");
+//
+//            //将cookie对象加入response响应
+//            response.addCookie(token);
+//            response.addCookie(role);
+//
+//            return ApiResultHandler.buildApiResult(200, "请求成功", adminRes);
+//        }
+//
+//        Teacher teacherRes = loginService.teacherLogin(username,password);
+//        if (teacherRes != null) {
+//            Cookie token = new Cookie("rb_token", teacherRes.getCardId());
+//            token.setPath("/");
+//            Cookie role = new Cookie("rb_role", "1");
+//            role.setPath("/");
+//            response.addCookie(token);
+//            response.addCookie(role);
+//            return ApiResultHandler.buildApiResult(200, "请求成功", teacherRes);
+//        }
+//
+//        Student studentRes = loginService.studentLogin(username,password);
+//        if (studentRes != null) {
+//            Cookie token = new Cookie("rb_token", studentRes.getCardId());
+//            token.setPath("/");
+//            Cookie role = new Cookie("rb_role", "2");
+//            role.setPath("/");
+//            response.addCookie(token);
+//            response.addCookie(role);
+//            return ApiResultHandler.buildApiResult(200, "请求成功", studentRes);
+//        }
 
         return ApiResultHandler.buildApiResult(400, "请求失败", null);
     }
