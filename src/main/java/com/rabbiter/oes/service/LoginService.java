@@ -5,6 +5,8 @@ import com.rabbiter.oes.entity.Student;
 import com.rabbiter.oes.entity.Teacher;
 import com.rabbiter.oes.entity.User;
 
+import java.util.List;
+
 public interface LoginService {
 
     public Admin adminLogin(Integer username, String password);
@@ -14,4 +16,6 @@ public interface LoginService {
     public Student studentLogin(Integer username, String password);
 
     public User userLogin(String userId,String passWord);
+
+    public List<User> leaderId(String userIntNO);
 }

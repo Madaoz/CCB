@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface LoginMapper {
 
@@ -24,4 +26,7 @@ public interface LoginMapper {
 
     @Select("select userId,userName,userUass,userInstNo,role,grade from userInfo where userId = #{username} and passWord = #{password}")
     public User userLogin(@Param("username") String userName, @Param("password") String passWord);
+
+    @Select("select userId from userInfo where userInstNo = #{userInstNo} and role = '1'")
+    public List<User> leaderId(@Param("userInstNo") String userInstNo);
 }

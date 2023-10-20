@@ -2,25 +2,51 @@ package com.rabbiter.oes.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rabbiter.oes.entity.ApiResult;
-import com.rabbiter.oes.entity.ExamManage;
+import com.rabbiter.oes.entity.*;
 import com.rabbiter.oes.serviceimpl.ExamManageServiceImpl;
+import com.rabbiter.oes.serviceimpl.LoginServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 @RestController
 public class ExamManageController {
+
+    @Autowired
+    private LoginServiceImpl loginService;
 
     @Autowired
     private ExamManageServiceImpl examManageService;
 
     @GetMapping("/exams")
     public ApiResult findAll(){
-        System.out.println("不分页查询所有试卷");
+        System.out.println("不分页查询所有测评人员");
         ApiResult apiResult;
         apiResult = ApiResultHandler.buildApiResult(200, "请求成功！", examManageService.findAll());
         return apiResult;
+    }
+
+    //在userInfo表中，查询评价人所对应的被评价人编号
+    public List<User> findBpjId(String userInstNo){
+        System.out.println("查询评价人对应的被评价人");
+        List<User> listLeader = null;
+        listLeader = loginService.leaderId(userInstNo);
+        return listLeader;
+    }
+
+    //根据评价人编号和被评价人编号在score_manage表中查分数
+    @GetMapping("/exams/{userId}")
+    public ApiResult findALL(@PathVariable("userId") String userId){
+        System.out.println("查询score_manage表是否有得分");
+        List<BpjPerson> bpjPersonList = examManageService.find(userId);
+        if(bpjPersonList == null){
+            return ApiResultHandler.buildApiResult(10000,"被测评人不存在",null);
+        }
+        return ApiResultHandler.buildApiResult(200,"请求成功",bpjPersonList);
+
     }
 
     @GetMapping("/exams/{page}/{size}")

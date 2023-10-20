@@ -2,6 +2,7 @@ package com.rabbiter.oes.serviceimpl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.entity.ExamManage;
 import com.rabbiter.oes.mapper.ExamManageMapper;
 import com.rabbiter.oes.service.ExamManageService;
@@ -31,6 +32,13 @@ public class ExamManageServiceImpl implements ExamManageService {
         setMaxScore(examManageList);
         return examManageList;
     }
+
+    @Override
+    public List<BpjPerson> find(String userId){
+        List<BpjPerson> bpjPersonList = examManageMapper.find(userId);
+        return bpjPersonList;
+    }
+
 
     @Override
     public IPage<ExamManage> findAll(Page<ExamManage> page) {

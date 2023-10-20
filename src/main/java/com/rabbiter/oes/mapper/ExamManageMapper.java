@@ -2,6 +2,7 @@ package com.rabbiter.oes.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.entity.ExamManage;
 import org.apache.ibatis.annotations.*;
 
@@ -12,8 +13,14 @@ public interface ExamManageMapper {
 //    @Select("select * from exam_manage")
 //    List<ExamManage> findAll();
 
-    @Select("select * from exam_manage")
+//    @Select("select * from exam_manage")
+//    IPage<ExamManage> findAll(Page page);
+
+    @Select("select * from score_manage")
     IPage<ExamManage> findAll(Page page);
+
+    @Select("select bpj_name,score from score_manage where pj_id = #{userId}")
+    List<BpjPerson> find(String userId);
 
     @Select("select * from exam_manage where examCode = #{examCode}")
     ExamManage findById(Integer examCode);

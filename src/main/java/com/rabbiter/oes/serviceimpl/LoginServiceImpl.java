@@ -9,6 +9,8 @@ import com.rabbiter.oes.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoginServiceImpl implements LoginService {
 
@@ -33,5 +35,10 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User userLogin(String userId,String passWord){
         return loginMapper.userLogin(userId,passWord);
+    }
+
+    @Override
+    public List<User> leaderId(String userInstNo){
+        return loginMapper.leaderId(userInstNo);
     }
 }
