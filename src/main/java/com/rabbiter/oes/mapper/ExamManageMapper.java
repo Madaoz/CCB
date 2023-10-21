@@ -19,7 +19,7 @@ public interface ExamManageMapper {
     @Select("select * from score_manage")
     IPage<ExamManage> findAll(Page page);
 
-    @Select("select bpj_name,score from score_manage where pj_id = #{userId}")
+    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} order by bpj_grade desc")
     List<BpjPerson> find(String userId);
 
     @Select("select * from exam_manage where examCode = #{examCode}")

@@ -1,36 +1,36 @@
 package com.rabbiter.oes.entity;
 
 public class BpjPerson {
-    private String name;
+    private String bpjName;
 
-    private String id;
+    private String bpjId;
 
-    private String uass;
+    private String bpjUass;
 
     private String score;
 
-    public String getName() {
-        return name;
+    public String getBpjName() {
+        return bpjName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBpjName(String bpjName) {
+        this.bpjName = bpjName;
     }
 
-    public String getId() {
-        return id;
+    public String getBpjId() {
+        return bpjId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBpjId(String bpjId) {
+        this.bpjId = bpjId;
     }
 
-    public String getUass() {
-        return uass;
+    public String getBpjUass() {
+        return bpjUass;
     }
 
-    public void setUass(String uass) {
-        this.uass = uass;
+    public void setBpjUass(String bpjUass) {
+        this.bpjUass = bpjUass;
     }
 
     public String getScore() {

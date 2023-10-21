@@ -45,8 +45,7 @@ public class ExamManageController {
         if(bpjPersonList == null){
             return ApiResultHandler.buildApiResult(10000,"被测评人不存在",null);
         }
-        return ApiResultHandler.buildApiResult(200,"请求成功",bpjPersonList);
-
+        return ApiResultHandler.success(examManageService.find(userId));
     }
 
     @GetMapping("/exams/{page}/{size}")
