@@ -17,6 +17,26 @@ public class Admin {
 
     private String role;
 
+//    private String userId;
+//
+//    private String userUass;
+//
+//    public String getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
+//
+//    public String getUserUass() {
+//        return userUass;
+//    }
+//
+//    public void setUserUass(String userUass) {
+//        this.userUass = userUass;
+//    }
+
     public Integer getAdminId() {
         return adminId;
     }

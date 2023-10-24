@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * ?
  * 对用户信息做更改
- * 包含第一次登录强制更改密码
+ * 登录密码修改
  */
 
 @RestController

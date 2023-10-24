@@ -15,6 +15,16 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override
+    public int updatePWD1(String userId) {
+        return adminMapper.updatePWD1(userId);
+    }
+
+    @Override
+    public int updatePWD2(String userUass) {
+        return adminMapper.updatePWD2(userUass);
+    }
+
+    @Override
     public List<Admin> findAll() {
         return adminMapper.findAll();
     }

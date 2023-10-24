@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface AdminService{
 
+    public int updatePWD1(String userId);
+
+    public int updatePWD2(String userUass);
+
     public List<Admin> findAll();
 
     public Admin findById(Integer adminId);

@@ -36,6 +36,10 @@ public class LoginServiceImpl implements LoginService {
     public User userLogin(String userId,String passWord){
         return loginMapper.userLogin(userId,passWord);
     }
+    @Override
+    public User userLogin1(String userId,String passWord){
+        return loginMapper.userLogin1(userId,passWord);
+    }
 
     @Override
     public List<User> leaderId(String userInstNo){

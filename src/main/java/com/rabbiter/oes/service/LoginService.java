@@ -16,6 +16,7 @@ public interface LoginService {
     public Student studentLogin(Integer username, String password);
 
     public User userLogin(String userId,String passWord);
+    public User userLogin1(String userId,String passWord);
 
     public List<User> leaderId(String userIntNO);
 }

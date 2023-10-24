@@ -27,6 +27,9 @@ public interface LoginMapper {
     @Select("select userId,userName,userUass,userInstNo,role,grade from userInfo where userId = #{username} and passWord = #{password}")
     public User userLogin(@Param("username") String userName, @Param("password") String passWord);
 
+    @Select("select userId,userName,userUass,userInstNo,role,grade from userInfo where userUass = #{username} and passWord = #{password}")
+    public User userLogin1(@Param("username") String userName, @Param("password") String passWord);
+
     @Select("select userId from userInfo where userInstNo = #{userInstNo} and role = '1'")
     public List<User> leaderId(@Param("userInstNo") String userInstNo);
 }

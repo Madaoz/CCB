@@ -7,6 +7,13 @@ import com.rabbiter.oes.util.ApiResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * 管理端功能
+ * 重置用户密码为初始密码
+ *
+ */
+
 @RestController
 public class AdminController {
 
@@ -14,6 +21,17 @@ public class AdminController {
     @Autowired
     public AdminController(AdminServiceImpl adminService){
         this.adminService = adminService;
+    }
+    //管理员输入8位员工编号重置用户密码
+    @PutMapping("/admin/{userId}")
+    public ApiResult updatePWD1(@PathVariable("userId") String userId){
+        return ApiResultHandler.success(adminService.updatePWD1(userId));
+    }
+
+    //管理员输入uass编号重置用户密码
+    @PutMapping("/admin/{userUass}")
+    public ApiResult updatePWD2(@PathVariable("userUass") String userUass){
+        return ApiResultHandler.success(adminService.updatePWD2(userUass));
     }
 
     @GetMapping("/admins")

@@ -8,6 +8,13 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
+    @Update("update `userinfo` set passWord = '' where userId = #{userId}")
+    public int updatePWD1(String userId);
+
+    @Update("update `userinfo` set passWord = '' where userUass = #{userUass}")
+    public int updatePWD2(String userUass);
+
+
     @Select("select adminName,sex,tel,email,cardId,role from `admin`")
     public List<Admin> findAll();
 

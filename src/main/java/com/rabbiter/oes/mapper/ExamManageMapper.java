@@ -14,9 +14,11 @@ public interface ExamManageMapper {
     @Select("select * from score_manage")
     IPage<ExamManage> findAll(Page page);
 
-    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and ISNULL(score) order by bpj_uass ")
+    //用8为员工编号登录
+    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and  (ISNULL(score) or score = '') order by bpj_uass ")
     List<BpjPerson> find1(String userId);
-    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and NOT ISNULL(score) order by bpj_uass")
+    //用uass登录
+    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
     List<BpjPerson> find2(String userId);
 
 
