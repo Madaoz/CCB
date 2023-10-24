@@ -10,17 +10,15 @@ import java.util.List;
 
 @Mapper
 public interface ExamManageMapper {
-//    @Select("select * from exam_manage")
-//    List<ExamManage> findAll();
-
-//    @Select("select * from exam_manage")
-//    IPage<ExamManage> findAll(Page page);
 
     @Select("select * from score_manage")
     IPage<ExamManage> findAll(Page page);
 
-    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} order by bpj_grade desc")
-    List<BpjPerson> find(String userId);
+    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and ISNULL(score) order by bpj_uass ")
+    List<BpjPerson> find1(String userId);
+    @Select("select bpj_name bpjName,bpj_id bpjId,score from score_manage where pj_id = #{userId} and NOT ISNULL(score) order by bpj_uass")
+    List<BpjPerson> find2(String userId);
+
 
     @Select("select * from exam_manage where examCode = #{examCode}")
     ExamManage findById(Integer examCode);

@@ -34,8 +34,14 @@ public class ExamManageServiceImpl implements ExamManageService {
     }
 
     @Override
-    public List<BpjPerson> find(String userId){
-        List<BpjPerson> bpjPersonList = examManageMapper.find(userId);
+    public List<BpjPerson> find1(String userId){
+        List<BpjPerson> bpjPersonList = examManageMapper.find1(userId);
+        return bpjPersonList;
+    }
+
+    @Override
+    public List<BpjPerson> find2(String userId){
+        List<BpjPerson> bpjPersonList = examManageMapper.find2(userId);
         return bpjPersonList;
     }
 

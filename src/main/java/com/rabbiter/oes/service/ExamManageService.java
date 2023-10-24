@@ -17,7 +17,8 @@ public interface ExamManageService {
 
     ExamManage findById(Integer examCode);
 
-    List<BpjPerson> find(String userId);
+    List<BpjPerson> find1(String userId);
+    List<BpjPerson> find2(String userId);
 
     int delete(Integer examCode);
 

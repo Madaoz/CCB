@@ -9,4 +9,6 @@ import java.util.List;
 public interface SelfEvaluationService {
 
     List<User> findSelf(String userId);
+
+    int insertScore(SelfScore selfScore);
 }

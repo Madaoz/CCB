@@ -1,31 +1,28 @@
 package com.rabbiter.oes.controller;
 
 import com.rabbiter.oes.entity.ApiResult;
-import com.rabbiter.oes.entity.User;
-import com.rabbiter.oes.serviceimpl.SelfEvaluationImpl;
+import com.rabbiter.oes.entity.OtherScore;
+import com.rabbiter.oes.serviceimpl.OthersEvaluationImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 public class OthersEvaluationController {
 
     @Autowired
-    private SelfEvaluationImpl selfEvaluationService;
+    private OthersEvaluationImpl othersEvaluationService;
 
-    //根据用户id，根据
-    @GetMapping("/exams/{userId}")
-    public ApiResult findSelf(@PathVariable("userId") String userId){
-        System.out.println("根据用户id，查询自评价信息，是否需要自评价");
-        List<User> userList = selfEvaluationService.findSelf(userId);
-        if(userList == null){
-            return ApiResultHandler.buildApiResult(10000,"无需自评",null);
+    @PutMapping("/othersExamsScore")
+    public ApiResult updataOthersScore(@RequestBody OtherScore otherScore) {
+        System.out.println("toString: ======="+otherScore.getScore());
+        int sc = othersEvaluationService.updataOthersScore(otherScore);
+        if (sc != 0) {
+            return ApiResultHandler.buildApiResult(200,"添加成功",sc);
         }
-        return ApiResultHandler.success(selfEvaluationService.findSelf(userId));
+        return ApiResultHandler.buildApiResult(400,"添加失败",sc);
     }
-
 }

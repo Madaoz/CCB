@@ -29,23 +29,25 @@ public class ExamManageController {
         return apiResult;
     }
 
-    //在userInfo表中，查询评价人所对应的被评价人编号
-    public List<User> findBpjId(String userInstNo){
-        System.out.println("查询评价人对应的被评价人");
-        List<User> listLeader = null;
-        listLeader = loginService.leaderId(userInstNo);
-        return listLeader;
-    }
 
-    //根据评价人编号和被评价人编号在score_manage表中查分数
-    @GetMapping("/exams/{userId}")
-    public ApiResult findALL(@PathVariable("userId") String userId){
+    //根据评价人编号和被评价人编号在score_manage表中,根据职等返回信息
+    @GetMapping("/exams1/{userId}")
+    public ApiResult findALL1(@PathVariable("userId") String userId){
         System.out.println("查询score_manage表是否有得分");
-        List<BpjPerson> bpjPersonList = examManageService.find(userId);
+        List<BpjPerson> bpjPersonList = examManageService.find1(userId);
         if(bpjPersonList == null){
             return ApiResultHandler.buildApiResult(10000,"被测评人不存在",null);
         }
-        return ApiResultHandler.success(examManageService.find(userId));
+        return ApiResultHandler.success(examManageService.find1(userId));
+    }
+    @GetMapping("/exams2/{userId}")
+    public ApiResult findALL2(@PathVariable("userId") String userId){
+        System.out.println("查询score_manage表是否有得分");
+        List<BpjPerson> bpjPersonList = examManageService.find2(userId);
+        if(bpjPersonList == null){
+            return ApiResultHandler.buildApiResult(10000,"被测评人不存在",null);
+        }
+        return ApiResultHandler.success(examManageService.find2(userId));
     }
 
     @GetMapping("/exams/{page}/{size}")

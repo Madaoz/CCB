@@ -2,6 +2,7 @@ package com.rabbiter.oes.entity;
 
 public class ResMessage {
 
+
     String role;
 
     public String getRole() {

@@ -10,7 +10,9 @@ import java.util.List;
 @Mapper
 public interface SelfEvaluationMapper {
 
-    @Select("select username ,score from self_evaluation where userid = #{userId}")
+    @Select("select score,username from self_evaluation where userid = #{userId}")
     List<User> findSelf(String userId);
 
+    @Update("Update self_evaluation set score = #{score} where userid = #{userId}")
+    int insertScore(SelfScore selfScore);
 }

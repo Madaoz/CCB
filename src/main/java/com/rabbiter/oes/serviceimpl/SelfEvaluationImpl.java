@@ -12,11 +12,9 @@ import com.rabbiter.oes.mapper.SelfEvaluationMapper;
 
 import java.util.List;
 
-
+@Service
 public class SelfEvaluationImpl implements SelfEvaluationService {
 
-    @Autowired
-    private SelfEvaluationImpl selfEvaluationservice;
 
     @Autowired
     private SelfEvaluationMapper selfEvaluationMapper;
@@ -25,5 +23,10 @@ public class SelfEvaluationImpl implements SelfEvaluationService {
     public List<User> findSelf(String userId){
         List<User> userList = selfEvaluationMapper.findSelf(userId);
         return userList;
+    }
+
+    @Override
+    public int insertScore(SelfScore selfScore){
+        return selfEvaluationMapper.insertScore(selfScore);
     }
 }

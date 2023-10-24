@@ -16,6 +16,16 @@ public class User {
     //职等
     private String grade;
 
+    private String score;
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
     public String getRole() {
         return role;
     }
