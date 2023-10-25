@@ -20,4 +20,10 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
         return othersEvaluationMapper.updataOthersScore(otherScore);
     }
 
+    @Override
+    public int updateLeaderInfo(){
+        return othersEvaluationMapper.updateLeaderInfo();
+    }
+
+
 }

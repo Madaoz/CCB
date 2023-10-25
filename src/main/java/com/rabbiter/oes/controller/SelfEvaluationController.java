@@ -22,13 +22,13 @@ public class SelfEvaluationController {
     @GetMapping("/selfExams/{userId}")
     public ApiResult findSelf(@PathVariable("userId") String userId) {
         System.out.println("根据用户id，查询自评价信息，是否需要自评价");
-        List<User> userList = selfEvaluationService.findSelf(userId);
-        return ApiResultHandler.success(selfEvaluationService.findSelf(userId));
+        List<SelfScore> selfScoreList = selfEvaluationService.findSelf(userId);
+        return ApiResultHandler.success(selfScoreList);
     }
 
     @PutMapping("/selfExamsScore")
     public ApiResult insertScore(@RequestBody SelfScore selfScore) {
-        System.out.println("toString: ======="+selfScore.getScore());
+        System.out.println("toString: ======="+selfScore.getSelfevaluation());
         int sc = selfEvaluationService.insertScore(selfScore);
         if (sc != 0) {
             return ApiResultHandler.buildApiResult(200,"添加成功",sc);

@@ -2,9 +2,11 @@ package com.rabbiter.oes.entity;
 
 public class SelfScore {
 
+    String name;
+
     String userId;
 
-    int score;
+    String selfevaluation;
 
     public String getUserId() {
         return userId;
@@ -14,11 +16,19 @@ public class SelfScore {
         this.userId = userId;
     }
 
-    public int getScore() {
-        return score;
+    public String getSelfevaluation() {
+        return selfevaluation;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setSelfevaluation(String selfevaluation) {
+        this.selfevaluation = selfevaluation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

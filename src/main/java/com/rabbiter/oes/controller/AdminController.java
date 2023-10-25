@@ -34,6 +34,9 @@ public class AdminController {
         return ApiResultHandler.success(adminService.updatePWD2(userUass));
     }
 
+    //管理员查询所有得分信息
+
+
     @GetMapping("/admins")
     public ApiResult findAll(){
         System.out.println("查询全部");

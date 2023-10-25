@@ -8,10 +8,10 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
-    @Update("update `userinfo` set passWord = '' where userId = #{userId}")
+    @Update("update `userinfo` set passWord = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92' where userId = #{userId}")
     public int updatePWD1(String userId);
 
-    @Update("update `userinfo` set passWord = '' where userUass = #{userUass}")
+    @Update("update `userinfo` set passWord = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92' where userUass = #{userUass}")
     public int updatePWD2(String userUass);
 
 

@@ -26,6 +26,8 @@ public class LoginController {
         String passWord = login.getPassword();
         //用户使用8为员工编号登录
         User user1 = loginService.userLogin(userId,passWord);
+        //用户使用uass登录
+        User user2 = loginService.userLogin(userId,passWord);
         if(user1 != null){
             Cookie token1 = new Cookie("rb_token",user1.getUserUass());
             token1.setPath("/");
@@ -37,18 +39,16 @@ public class LoginController {
             response.addCookie(role1);
             return ApiResultHandler.buildApiResult(200, "请求成功", user1);
         }
-        else if(user1 == null){
-            //用户使用uass登录
-            user1 = loginService.userLogin1(userId,passWord);
-            Cookie token2 = new Cookie("rb_token",user1.getUserUass());
+        else if(user2 != null){
+            Cookie token2 = new Cookie("rb_token",user2.getUserUass());
             token2.setPath("/");
-            Cookie role2 = new Cookie("rb_role",user1.getRole());
+            Cookie role2 = new Cookie("rb_role",user2.getRole());
             role2.setPath("/");
 
             //将cookie对象加入response响应
             response.addCookie(token2);
             response.addCookie(role2);
-            return ApiResultHandler.buildApiResult(200, "请求成功", user1);
+            return ApiResultHandler.buildApiResult(200, "请求成功", user2);
 
         }
         return ApiResultHandler.buildApiResult(400, "请求失败", null);

@@ -20,9 +20,9 @@ public class SelfEvaluationImpl implements SelfEvaluationService {
     private SelfEvaluationMapper selfEvaluationMapper;
 
     @Override
-    public List<User> findSelf(String userId){
-        List<User> userList = selfEvaluationMapper.findSelf(userId);
-        return userList;
+    public List<SelfScore> findSelf(String userId){
+        List<SelfScore> selfScoreList = selfEvaluationMapper.findSelf(userId);
+        return selfScoreList;
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SelfEvaluationService {
 
-    List<User> findSelf(String userId);
+    List<SelfScore> findSelf(String userId);
 
     int insertScore(SelfScore selfScore);
 }

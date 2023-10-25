@@ -6,5 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface OthersEvaluationService {
 
     int updataOthersScore(OtherScore otherScore);
+    int updateLeaderInfo();
 
 }
