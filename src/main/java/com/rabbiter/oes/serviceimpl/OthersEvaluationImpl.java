@@ -21,9 +21,15 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
     }
 
     @Override
+    public int updateNm(){
+        return othersEvaluationMapper.udeateNm();
+    }
+
+    @Override
     public int updateLeaderInfo(){
         return othersEvaluationMapper.updateLeaderInfo();
     }
+
 
 
 }

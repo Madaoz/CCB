@@ -1,6 +1,7 @@
 package com.rabbiter.oes.serviceimpl;
 
 import com.rabbiter.oes.entity.Admin;
+import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.mapper.AdminMapper;
 import com.rabbiter.oes.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int updatePWD2(String userUass) {
         return adminMapper.updatePWD2(userUass);
+    }
+
+    @Override
+    public List<BpjPerson> selectAll(){
+        return adminMapper.selectAll();
     }
 
     @Override

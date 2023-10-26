@@ -1,6 +1,7 @@
 package com.rabbiter.oes.mapper;
 
 import com.rabbiter.oes.entity.Admin;
+import com.rabbiter.oes.entity.BpjPerson;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface AdminMapper {
     @Update("update `userinfo` set passWord = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92' where userUass = #{userUass}")
     public int updatePWD2(String userUass);
 
+    @Select("select * from leaderinfo")
+    public List<BpjPerson> selectAll();
 
     @Select("select adminName,sex,tel,email,cardId,role from `admin`")
     public List<Admin> findAll();

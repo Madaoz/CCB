@@ -16,6 +16,6 @@ public interface SelfEvaluationMapper {
 //    @Update("Update self_evaluation set score = #{score} where userid = #{userId}")
 //    int insertScore(SelfScore selfScore);
 
-    @Update("update leaderinfo set selfevaluation = #{score} where id = #{userId}")
+    @Update("update leaderinfo set selfevaluation = #{selfevaluation} where id = #{userId}")
     int insertScore(SelfScore selfScore);
 }

@@ -24,6 +24,7 @@ public class OthersEvaluationController {
         if (sc != 0) {
             //更新完score_manage,接着更新leaderinfo表
             int leader = othersEvaluationService.updateLeaderInfo();
+            othersEvaluationService.updateNm();
             return ApiResultHandler.buildApiResult(200,"添加成功",sc);
         }
         return ApiResultHandler.buildApiResult(400,"添加失败",sc);

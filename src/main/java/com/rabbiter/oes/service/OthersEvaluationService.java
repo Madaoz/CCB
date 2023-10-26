@@ -7,5 +7,6 @@ public interface OthersEvaluationService {
 
     int updataOthersScore(OtherScore otherScore);
     int updateLeaderInfo();
+    int updateNm();
 
 }

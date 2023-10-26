@@ -2,10 +2,19 @@ package com.rabbiter.oes.controller;
 
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.ApiResult;
+import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.serviceimpl.AdminServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 
 
 /**
@@ -35,7 +44,56 @@ public class AdminController {
     }
 
     //管理员查询所有得分信息
+    @GetMapping("/admin1")
+    public ApiResult selectAll(){
+        System.out.println("查询所有被评价人员得分情况");
+        return ApiResultHandler.success(adminService.selectAll());
+    }
 
+//    //管理员导出查询结果
+//    @GetMapping("/admin2")
+//    public ApiResult download(){
+//        System.out.println("管理员导出查询结果");
+//        List<BpjPerson> bpjPersonList = adminService.selectAll();
+//        BpjPerson bp = new BpjPerson();
+//        String filePath = "C:\\Users\\Administrator\\Desktop\\path";
+//        String fileName = System.currentTimeMillis() + ".xls";
+//        bp.setFileName(fileName);
+//        bp.setFilePath(filePath);
+//        Excel(filePath + "/" + fileName, bpjPersonList);
+//        return ApiResultHandler.success(bp);
+//    }
+
+//    public void Excel(String file,List<BpjPerson> bpjPersonList){
+//        FileOutputStream outputStream = null;
+//        HSSFWorkbook hs = new HSSFWorkbook;
+//        try{
+//            System.out.println("生成excle");
+//            outputStream = new FileOutputStream(new File(file));
+//            Sheet sheet = hs.createSheet("shee1");
+//            Row headerRow = sheet.createRow(0);
+//            Cell cell = headerRow.createCell(0);
+//            //设置字段名
+//            headerRow.createCell(0).setCellValue("姓名");
+//            headerRow.createCell(1).setCellValue("8位员工编号");
+//            headerRow.createCell(2).setCellValue("uass编号");
+//            headerRow.createCell(3).setCellValue("自评得分");
+//            headerRow.createCell(4).setCellValue("上级评价得分");
+//            headerRow.createCell(5).setCellValue("上级评价人数");
+//            headerRow.createCell(6).setCellValue("同级评价得分");
+//            headerRow.createCell(7).setCellValue("同级评价人数");
+//            headerRow.createCell(8).setCellValue("下级评价得分");
+//            headerRow.createCell(9).setCellValue("下级评价人数");
+//            headerRow.createCell(10).setCellValue("总得分");
+//            headerRow.createCell(11).setCellValue("总评价人数");
+//            int count = bpjPersonList.size();
+//            for(int i = 0; i <= count; i++){
+//
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     @GetMapping("/admins")
     public ApiResult findAll(){
