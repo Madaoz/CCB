@@ -24,10 +24,11 @@ public class LoginController {
     public ApiResult login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
         String userId = login.getUsername();
         String passWord = login.getPassword();
+        String useruass = login.getUsername();
         //用户使用8为员工编号登录
         User user1 = loginService.userLogin(userId,passWord);
         //用户使用uass登录
-        User user2 = loginService.userLogin(userId,passWord);
+        User user2 = loginService.userLogin1(useruass,passWord);
         if(user1 != null){
             Cookie token1 = new Cookie("rb_token",user1.getUserUass());
             token1.setPath("/");
@@ -40,7 +41,7 @@ public class LoginController {
             return ApiResultHandler.buildApiResult(200, "请求成功", user1);
         }
         else if(user2 != null){
-            Cookie token2 = new Cookie("rb_token",user2.getUserUass());
+            Cookie token2 = new Cookie("rb_token",user2.getUserId());
             token2.setPath("/");
             Cookie role2 = new Cookie("rb_role",user2.getRole());
             role2.setPath("/");

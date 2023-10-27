@@ -1,5 +1,7 @@
 package com.rabbiter.oes.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.BpjPerson;
 
@@ -12,6 +14,8 @@ public interface AdminService{
     public int updatePWD2(String userUass);
 
     public List<BpjPerson> selectAll();
+
+    IPage<BpjPerson> selectAllPage(Page page);
 
     public List<Admin> findAll();
 

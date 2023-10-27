@@ -29,7 +29,6 @@ public class ExamManageController {
         return apiResult;
     }
 
-
     //根据评价人编号和被评价人编号在score_manage表中,根据职等返回信息
     @GetMapping("/exams1/{userId}")
     public ApiResult findALL1(@PathVariable("userId") String userId){

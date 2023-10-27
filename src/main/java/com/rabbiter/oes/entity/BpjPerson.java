@@ -40,24 +40,7 @@ public class BpjPerson {
     //总评价人数
     private String totalNm;
 
-    public String getTotalscore() {
-        return totalscore;
-    }
-
-    public void setTotalscore(String totalscore) {
-        this.totalscore = totalscore;
-    }
-
-    public String getTotalNm() {
-        return totalNm;
-    }
-
-    public void setTotalNm(String totalNm) {
-        this.totalNm = totalNm;
-    }
-
     private String filePath;
-
     private String fileName;
 
     public String getFilePath() {
@@ -74,6 +57,38 @@ public class BpjPerson {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getBpjName() {
+        return bpjName;
+    }
+
+    public void setBpjName(String bpjName) {
+        this.bpjName = bpjName;
+    }
+
+    public String getBpjId() {
+        return bpjId;
+    }
+
+    public void setBpjId(String bpjId) {
+        this.bpjId = bpjId;
+    }
+
+    public String getBpjUass() {
+        return bpjUass;
+    }
+
+    public void setBpjUass(String bpjUass) {
+        this.bpjUass = bpjUass;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public String getId() {
@@ -156,35 +171,19 @@ public class BpjPerson {
         this.selfevaluation = selfevaluation;
     }
 
-    public String getBpjName() {
-        return bpjName;
+    public String getTotalscore() {
+        return totalscore;
     }
 
-    public void setBpjName(String bpjName) {
-        this.bpjName = bpjName;
+    public void setTotalscore(String totalscore) {
+        this.totalscore = totalscore;
     }
 
-    public String getBpjId() {
-        return bpjId;
+    public String getTotalNm() {
+        return totalNm;
     }
 
-    public void setBpjId(String bpjId) {
-        this.bpjId = bpjId;
-    }
-
-    public String getBpjUass() {
-        return bpjUass;
-    }
-
-    public void setBpjUass(String bpjUass) {
-        this.bpjUass = bpjUass;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
+    public void setTotalNm(String totalNm) {
+        this.totalNm = totalNm;
     }
 }

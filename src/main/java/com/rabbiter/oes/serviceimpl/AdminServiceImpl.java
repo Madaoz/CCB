@@ -1,5 +1,7 @@
 package com.rabbiter.oes.serviceimpl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.mapper.AdminMapper;
@@ -23,6 +25,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int updatePWD2(String userUass) {
         return adminMapper.updatePWD2(userUass);
+    }
+
+    @Override
+    public IPage<BpjPerson> selectAllPage(Page page){
+        return adminMapper.selectAllPage(page);
     }
 
     @Override

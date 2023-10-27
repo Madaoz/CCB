@@ -1,5 +1,7 @@
 package com.rabbiter.oes.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.BpjPerson;
 import org.apache.ibatis.annotations.*;
@@ -17,6 +19,9 @@ public interface AdminMapper {
 
     @Select("select * from leaderinfo")
     public List<BpjPerson> selectAll();
+
+    @Select("select * from leaderinfo")
+    IPage<BpjPerson> selectAllPage(Page page);
 
     @Select("select adminName,sex,tel,email,cardId,role from `admin`")
     public List<Admin> findAll();
