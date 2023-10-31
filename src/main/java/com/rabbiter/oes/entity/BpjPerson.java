@@ -42,6 +42,16 @@ public class BpjPerson {
 
     private String filePath;
     private String fileName;
+    //所属机构
+    private String instno;
+
+    public String getInstno() {
+        return instno;
+    }
+
+    public void setInstno(String instno) {
+        this.instno = instno;
+    }
 
     public String getFilePath() {
         return filePath;

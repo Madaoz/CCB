@@ -21,15 +21,19 @@ public class TestQuestionController {
     @Autowired
     private QuestionImpl questionService;
 
-    //根据role，返回自评或他评试题
+    /**
+     * 根据前端返回的role值，传给前端自评题或他评题
+     * @param role
+     * @return
+     */
     @GetMapping("/Qexams/{role}")
     public ApiResult findQuestion(@PathVariable("role") String role){
         System.out.println("根据role，返回自评或他评试题");
         List<Question> questionList = questionService.findQuestion(role);
         if(questionList == null){
-            return ApiResultHandler.buildApiResult(10000,"无需自评",null);
+            return ApiResultHandler.buildApiResult(10000,"请求失败",null);
         }
-        return ApiResultHandler.success(questionService.findQuestion(role));
+        return ApiResultHandler.success(questionList);
     }
 
 

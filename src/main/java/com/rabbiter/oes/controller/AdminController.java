@@ -2,10 +2,8 @@ package com.rabbiter.oes.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.ApiResult;
 import com.rabbiter.oes.entity.BpjPerson;
-import com.rabbiter.oes.entity.ExamManage;
 import com.rabbiter.oes.serviceimpl.AdminServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,8 +12,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +23,8 @@ import java.util.List;
 /**
  * 管理端功能
  * 重置用户密码为初始密码
- *
+ * 查询得分情况
+ * 导出得分情况表
  */
 
 @RestController
@@ -38,21 +35,29 @@ public class AdminController {
     public AdminController(AdminServiceImpl adminService){
         this.adminService = adminService;
     }
-    //管理员输入8位员工编号重置用户密码
-    @PutMapping("/admin/{userId}")
+
+    /**
+     * 管理员输入8位员工编号重置用户密码
+     * @param userId
+     * @return
+     */
+    @GetMapping("/admin/{userId}")
     public ApiResult updatePWD1(@PathVariable("userId") String userId){
-        return ApiResultHandler.success(adminService.updatePWD1(userId));
+        int a = adminService.updatePWD1(userId);
+        if(a == 0){
+            return ApiResultHandler.buildApiResult(10000,"8为员工编号不存在",null);
+        }
+        return ApiResultHandler.success(a);
     }
 
-    //管理员输入uass编号重置用户密码
-    @GetMapping("/admin/{userUass}")
-    public ApiResult updatePWD2(@PathVariable("userUass") String userUass){
-        return ApiResultHandler.success(adminService.updatePWD2(userUass));
-    }
-
-    //分页查询所有的分情况
+    /**
+     * 分页查询所有的分情况
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("/admin1/{page}/{size}")
-    public ApiResult selectAll(@PathVariable("page") Integer page,@PathVariable("size") Integer size){
+    public ApiResult selectAll1(@PathVariable("page") Integer page,@PathVariable("size") Integer size){
         System.out.println("分页查询所有被评价人员得分情况");
         ApiResult apiResult;
         Page<BpjPerson> bpjPersonPage = new Page<>(page,size);
@@ -91,46 +96,52 @@ public class AdminController {
         return apiResult;
     }
 
+    /**
+     * 管理员根据姓名查询得分信息
+     * @param name
+     * @return
+     */
+    @GetMapping("/admin1/{name}")
+    public ApiResult selectAll1(@PathVariable("name") String name){
+        System.out.println("查询所有被评价人员得分情况");
+        List<BpjPerson> bpjPersonList = adminService.selectAll1(name);
+        for(int i = 0;i < bpjPersonList.size();i++){
+            BpjPerson bp = bpjPersonList.get(i);
+            if(bp.getSelfevaluation() != null && bp.getSelfevaluation().equals("0")){
+                bp.setSelfevaluation("");
+            }
+            if(bp.getSuperior() != null && bp.getSuperior().equals("0")){
+                bp.setSuperior("");
+            }
+            if(bp.getSuperiorNm() != null && bp.getSuperiorNm().equals("0")){
+                bp.setSuperiorNm("");
+            }
+            if(bp.getEqual() != null && bp.getEqual().equals("0")){
+                bp.setEqual("");
+            }
+            if(bp.getEqualNm() != null && bp.getEqualNm().equals("0")){
+                bp.setEqualNm("");
+            }
+            if(bp.getSubordinate() != null && bp.getSubordinate().equals("0")){
+                bp.setSubordinate("");
+            }
+            if(bp.getSubordinateNm() != null && bp.getSubordinateNm().equals("0")){
+                bp.setSubordinateNm("");
+            }
+            if(bp.getTotalscore() != null && bp.getTotalscore().equals("0")){
+                bp.setTotalscore("");
+            }
+            if(bp.getTotalNm() != null && bp.getTotalNm().equals("0")){
+                bp.setTotalNm("");
+            }
+        }
+        return ApiResultHandler.success(bpjPersonList);
+    }
 
-//    //管理员查询所有得分信息
-//    @GetMapping("/admin1")
-//    public ApiResult selectAll(){
-//        System.out.println("查询所有被评价人员得分情况");
-//        List<BpjPerson> bpjPersonList = adminService.selectAll();
-//        for(int i = 0;i < bpjPersonList.size();i++){
-//            BpjPerson bp = bpjPersonList.get(i);
-//            if(bp.getSelfevaluation() != null && bp.getSelfevaluation().equals("0")){
-//                bp.setSelfevaluation("");
-//            }
-//            if(bp.getSuperior() != null && bp.getSuperior().equals("0")){
-//                bp.setSuperior("");
-//            }
-//            if(bp.getSuperiorNm() != null && bp.getSuperiorNm().equals("0")){
-//                bp.setSuperiorNm("");
-//            }
-//            if(bp.getEqual() != null && bp.getEqual().equals("0")){
-//                bp.setEqual("");
-//            }
-//            if(bp.getEqualNm() != null && bp.getEqualNm().equals("0")){
-//                bp.setEqualNm("");
-//            }
-//            if(bp.getSubordinate() != null && bp.getSubordinate().equals("0")){
-//                bp.setSubordinate("");
-//            }
-//            if(bp.getSubordinateNm() != null && bp.getSubordinateNm().equals("0")){
-//                bp.setSubordinateNm("");
-//            }
-//            if(bp.getTotalscore() != null && bp.getTotalscore().equals("0")){
-//                bp.setTotalscore("");
-//            }
-//            if(bp.getTotalNm() != null && bp.getTotalNm().equals("0")){
-//                bp.setTotalNm("");
-//            }
-//        }
-//        return ApiResultHandler.success(bpjPersonList);
-//    }
-
-    //管理员导出查询结果throws IOException
+    /**
+     * 管理员导出查询结果
+     * @param response
+     */
     @GetMapping("/download")
     public void downloadExcel(HttpServletResponse response) {
         System.out.println("管理员导出查询结果");
@@ -158,8 +169,8 @@ public class AdminController {
         for (int i = 0; i < bpjPersonList.size(); i++) {
             bp = bpjPersonList.get(i);
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(bp.getId());
-            row.createCell(1).setCellValue(bp.getName());
+            row.createCell(0).setCellValue(bp.getName());
+            row.createCell(1).setCellValue(bp.getId());
             row.createCell(2).setCellValue(bp.getUass());
             row.createCell(3).setCellValue(bp.getSelfevaluation());
             row.createCell(4).setCellValue(bp.getSuperior());
@@ -196,36 +207,4 @@ public class AdminController {
         }
     }
 
-//    @GetMapping("/admins")
-//    public ApiResult findAll(){
-//        System.out.println("查询全部");
-//        return ApiResultHandler.success(adminService.findAll());
-//    }
-//
-//    @GetMapping("/admin/{adminId}")
-//    public ApiResult findById(@PathVariable("adminId") Integer adminId){
-//        System.out.println("根据ID查找");
-//        return ApiResultHandler.success(adminService.findById(adminId));
-//    }
-//
-//    @DeleteMapping("/admin/{adminId}")
-//    public ApiResult deleteById(@PathVariable("adminId") Integer adminId){
-//        adminService.deleteById(adminId);
-//        return ApiResultHandler.success();
-//    }
-//
-//    @PutMapping("/admin/{adminId}")
-//    public ApiResult update(@PathVariable("adminId") Integer adminId, Admin admin){
-//        return ApiResultHandler.success(adminService.update(admin));
-//    }
-//
-//    @PostMapping("/admin")
-//    public ApiResult add(Admin admin){
-//        return ApiResultHandler.success(adminService.add(admin));
-//    }
-//
-//    @GetMapping("/admin/resetPsw/{adminId}/{oldPsw}/{newPsw}")
-//    public ApiResult resetPsw(@PathVariable("adminId") Integer adminId, @PathVariable("newPsw") String newPsw, @PathVariable("oldPsw") String oldPsw) {
-//        return ApiResultHandler.success(adminService.resetPsw(adminId, newPsw, oldPsw));
-//    }
 }

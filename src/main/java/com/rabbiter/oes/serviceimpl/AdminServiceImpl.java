@@ -33,46 +33,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<BpjPerson> selectAll1(String name){
+        return adminMapper.selectAll1(name);
+    }
+
+    @Override
     public List<BpjPerson> selectAll(){
         return adminMapper.selectAll();
     }
-
-    @Override
-    public List<Admin> findAll() {
-        return adminMapper.findAll();
-    }
-
-    @Override
-    public Admin findById(Integer adminId) {
-        return adminMapper.findById(adminId);
-    }
-
-    @Override
-    public int deleteById(int adminId) {
-        return adminMapper.deleteById(adminId);
-    }
-
-    @Override
-    public int update(Admin admin) {
-        return adminMapper.update(admin);
-    }
-
-    @Override
-    public int add(Admin admin) {
-        return 0;
-    }
-
-    @Override
-    public Object resetPsw(Integer adminId, String newPsw, String oldPsw) {
-        Admin admin = findById(adminId);
-
-        if(!admin.getPwd().equals(oldPsw)) {
-            return "原密码错误";
-        }
-        admin.setPwd(String.valueOf(newPsw));
-        update(admin);
-        return true;
-    }
-
-
 }

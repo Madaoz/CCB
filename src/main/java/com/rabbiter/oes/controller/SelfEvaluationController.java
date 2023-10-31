@@ -3,8 +3,6 @@ package com.rabbiter.oes.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.*;
-import com.rabbiter.oes.serviceimpl.ExamManageServiceImpl;
-import com.rabbiter.oes.serviceimpl.LoginServiceImpl;
 import com.rabbiter.oes.serviceimpl.SelfEvaluationImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,11 @@ public class SelfEvaluationController {
     @Autowired
     private SelfEvaluationImpl selfEvaluationService;
 
+    /**
+     * 根据用户
+     * @param userId
+     * @return
+     */
     //根据用户id，查询是否需要自评价
     @GetMapping("/selfExams/{userId}")
     public ApiResult findSelf(@PathVariable("userId") String userId) {

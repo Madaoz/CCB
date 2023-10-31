@@ -1,12 +1,24 @@
 package com.rabbiter.oes.mapper;
 
+import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.entity.OtherScore;
 import com.rabbiter.oes.entity.SelfScore;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface OthersEvaluationMapper {
+
+    //用8为员工编号登录
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instno instno from score_manage where pj_id = #{userId} and  (ISNULL(score) or score = '') order by bpj_uass ")
+    List<BpjPerson> findById(String userId);
+    //用uass登录
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instno instno " +
+            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
+    List<BpjPerson> findByUass(String userId);
 
     //将他人测评得分更新到score_manage表中
     @Update("Update score_manage set score = #{score} where pj_id = #{pjid} and bpj_id = #{bpjid}")

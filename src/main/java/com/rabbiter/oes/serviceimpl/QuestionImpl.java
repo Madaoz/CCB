@@ -1,9 +1,7 @@
 package com.rabbiter.oes.serviceimpl;
 
 import com.rabbiter.oes.entity.Question;
-import com.rabbiter.oes.mapper.PaperMapper;
 import com.rabbiter.oes.mapper.QuestionMapper;
-import com.rabbiter.oes.service.PaperService;
 import com.rabbiter.oes.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

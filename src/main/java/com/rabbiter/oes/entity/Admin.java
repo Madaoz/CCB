@@ -5,37 +5,9 @@ public class Admin {
 
     private String adminName;
 
-    private String sex;
-
-    private String tel;
-
-    private String email;
-
     private String pwd;
 
-    private String cardId;
-
     private String role;
-
-//    private String userId;
-//
-//    private String userUass;
-//
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
-//
-//    public String getUserUass() {
-//        return userUass;
-//    }
-//
-//    public void setUserUass(String userUass) {
-//        this.userUass = userUass;
-//    }
 
     public Integer getAdminId() {
         return adminId;
@@ -53,30 +25,6 @@ public class Admin {
         this.adminName = adminName == null ? null : adminName.trim();
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
     public String getPwd() {
         return pwd;
     }
@@ -85,13 +33,6 @@ public class Admin {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    public String getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(String cardId) {
-        this.cardId = cardId == null ? null : cardId.trim();
-    }
 
     public String getRole() {
         return role;

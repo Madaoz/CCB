@@ -17,15 +17,6 @@ public interface AdminService{
 
     IPage<BpjPerson> selectAllPage(Page page);
 
-    public List<Admin> findAll();
+    List<BpjPerson> selectAll1(String name);
 
-    public Admin findById(Integer adminId);
-
-    public int deleteById(int adminId);
-
-    public int update(Admin admin);
-
-    public int add(Admin admin);
-
-    Object resetPsw(Integer adminId, String newPsw, String oldPsw);
 }
