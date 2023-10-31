@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface SelfEvaluationMapper {
 
-    @Select("select selfevaluation,name,instno from leaderinfo where id = #{userId}")
+    @Select("select selfevaluation,name,instname from leaderinfo where id = #{userId}")
     List<SelfScore> findSelf(String userId);
 
 

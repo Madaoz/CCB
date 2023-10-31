@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public List<User> leaderId(String userInstNo){
-        return loginMapper.leaderId(userInstNo);
+    public List<User> leaderId(String userInstName){
+        return loginMapper.leaderId(userInstName);
     }
 }

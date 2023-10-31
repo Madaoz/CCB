@@ -13,10 +13,10 @@ import java.util.List;
 public interface OthersEvaluationMapper {
 
     //用8为员工编号登录
-    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instno instno from score_manage where pj_id = #{userId} and  (ISNULL(score) or score = '') order by bpj_uass ")
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname from score_manage where pj_id = #{userId} and  (ISNULL(score) or score = '') order by bpj_uass ")
     List<BpjPerson> findById(String userId);
     //用uass登录
-    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instno instno " +
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname " +
             "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
     List<BpjPerson> findByUass(String userId);
 

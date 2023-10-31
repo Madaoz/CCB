@@ -11,7 +11,7 @@
  Target Server Version : 80021 (8.0.21)
  File Encoding         : 65001
 
- Date: 30/10/2023 16:29:31
+ Date: 31/10/2023 13:59:31
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `leaderinfo`  (
   `subordinateNm` int NULL DEFAULT NULL COMMENT '下级评价人数',
   `totalscore` int NULL DEFAULT NULL COMMENT '总得分（上中下级评价平均分总和）',
   `totalNm` int NULL DEFAULT NULL COMMENT '总评价人数（上中下级评价人数总和）',
-  `instno` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属机构',
+  `instName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属机构',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -107,11 +107,11 @@ CREATE TABLE `score_manage`  (
   `pj_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评价人8位员工编号',
   `pj_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评价人姓名',
   `pj_uass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评价人UASS号',
-  `pj_instno` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价人所属机构号',
+  `pj_instname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价人所属机构',
   `bpj_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '被评价人8位员工编号',
   `bpj_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '被评价人姓名',
   `bpj_uass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '被评价人UASS号',
-  `bpj_instno` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被评价人所属机构号',
+  `bpj_instname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被评价人所属机构',
   `score` double NULL DEFAULT NULL COMMENT '得分',
   `bpj_grade` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被评价人职等',
   `level` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上级为0，同级为1，下级为2'
@@ -147,7 +147,7 @@ CREATE TABLE `userinfo`  (
   `userId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '8位员工编号',
   `passWord` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `userUass` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'UASS编号',
-  `userInstNo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '所属机构号',
+  `userInstName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '所属机构',
   `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色',
   `grade` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '职等',
   PRIMARY KEY (`userId`) USING BTREE

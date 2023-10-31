@@ -10,7 +10,7 @@ public class User {
     //UASS编号
     private String userUass;
     //所属机构号
-    private String userInstNo;
+    private String userInstName;
     //角色标识（0：管理员，1：领导，3：员工）
     private String role;
     //职等
@@ -74,11 +74,11 @@ public class User {
         this.userUass = userUass;
     }
 
-    public String getUserInstNo() {
-        return userInstNo;
+    public String getUserInstName() {
+        return userInstName;
     }
 
-    public void setUserInstNo(String userInstNo) {
-        this.userInstNo = userInstNo;
+    public void setUserInstName(String userInstName) {
+        this.userInstName = userInstName;
     }
 }
