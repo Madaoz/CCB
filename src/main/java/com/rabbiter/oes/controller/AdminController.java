@@ -1,22 +1,26 @@
 package com.rabbiter.oes.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.ApiResult;
 import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.serviceimpl.AdminServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.util.StringUtil;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -42,8 +46,8 @@ public class AdminController {
      * @return
      */
     @GetMapping("/admin/{userId}")
-    public ApiResult updatePWD1(@PathVariable("userId") String userId){
-        int a = adminService.updatePWD1(userId);
+    public ApiResult updatePWD(@PathVariable("userId") String userId){
+        int a = adminService.updatePWD(userId);
         if(a == 0){
             return ApiResultHandler.buildApiResult(10000,"8为员工编号不存在",null);
         }
@@ -102,9 +106,9 @@ public class AdminController {
      * @return
      */
     @GetMapping("/admin1/{name}")
-    public ApiResult selectAll1(@PathVariable("name") String name){
+    public ApiResult selectByName(@PathVariable("name") String name){
         System.out.println("查询所有被评价人员得分情况");
-        List<BpjPerson> bpjPersonList = adminService.selectAll1(name);
+        List<BpjPerson> bpjPersonList = adminService.selectByName(name);
         for(int i = 0;i < bpjPersonList.size();i++){
             BpjPerson bp = bpjPersonList.get(i);
             if(bp.getSelfevaluation() != null && bp.getSelfevaluation().equals("0")){
@@ -145,55 +149,108 @@ public class AdminController {
     @GetMapping("/download")
     public void downloadExcel(HttpServletResponse response) {
         System.out.println("管理员导出查询结果");
-        List<BpjPerson> bpjPersonList = adminService.selectAll();
+        List<BpjPerson> bpjPersonList = adminService.dwonloadExcel();
         BpjPerson bp = new BpjPerson();
-        XSSFWorkbook hs = new XSSFWorkbook();
         System.out.println("生成excle");
+        XSSFWorkbook hs = new XSSFWorkbook();
         XSSFSheet sheet = hs.createSheet("shee1");
         XSSFRow headerRow = sheet.createRow(0);
+        headerRow.setHeightInPoints((short) 60);
         XSSFCell cell = headerRow.createCell(0);
-        //设置字段名
-        headerRow.createCell(0).setCellValue("姓名");
-        headerRow.createCell(1).setCellValue("8位员工编号");
-        headerRow.createCell(2).setCellValue("uass编号");
-        headerRow.createCell(3).setCellValue("自评得分");
-        headerRow.createCell(4).setCellValue("上级评价得分");
-        headerRow.createCell(5).setCellValue("上级评价人数");
-        headerRow.createCell(6).setCellValue("同级评价得分");
-        headerRow.createCell(7).setCellValue("同级评价人数");
-        headerRow.createCell(8).setCellValue("下级评价得分");
-        headerRow.createCell(9).setCellValue("下级评价人数");
-        headerRow.createCell(10).setCellValue("总得分");
-        headerRow.createCell(11).setCellValue("总评价人数");
+        //设置第一行格式，font字体加粗，大小15
+        XSSFFont font1 = hs.createFont();
+        font1.setBold(true);
+        font1.setFontHeight((long) 15);
+        XSSFCellStyle xssfCellStyle1 = hs.createCellStyle();
+        xssfCellStyle1.setFont(font1);
+        xssfCellStyle1.setAlignment(HorizontalAlignment.CENTER);
+        xssfCellStyle1.setVerticalAlignment(VerticalAlignment.CENTER);
+        sheet.setColumnWidth(0,15*256);
+        sheet.setColumnWidth(1,15*256);
+        sheet.setColumnWidth(2,15*256);
+        sheet.setColumnWidth(3,15*256);
+        sheet.setColumnWidth(4,15*256);
+        sheet.setColumnWidth(5,20*256);
+        sheet.setColumnWidth(6,20*256);
+        sheet.setColumnWidth(7,20*256);
+        sheet.setColumnWidth(8,20*256);
+        sheet.setColumnWidth(9,20*256);
+        sheet.setColumnWidth(10,20*256);
+        List<String> titleList = new LinkedList<>();
+        titleList.add("姓名");
+        titleList.add("uass");
+        titleList.add("自测得分");
+        titleList.add("他测得分");
+        titleList.add("他测人数");
+        titleList.add("上级评价得分");
+        titleList.add("上级评价人数");
+        titleList.add("同级评价得分");
+        titleList.add("同级评价人数");
+        titleList.add("下级评价得分");
+        titleList.add("下级评价人数");
+        for (int i = 0; i < titleList.size(); i++) {
+            cell = headerRow.createCell(i);
+            cell.setCellStyle(xssfCellStyle1);
+            cell.setCellValue(titleList.get(i));
+        }
+        //设置数据行单元格格式
+        XSSFFont font2 = hs.createFont();
+        font2.setFontHeight((long) 12);
+        XSSFCellStyle xssfCellStyle2 = hs.createCellStyle();
+        xssfCellStyle2.setFont(font2);
+        xssfCellStyle2.setAlignment(HorizontalAlignment.CENTER);
+        xssfCellStyle2.setVerticalAlignment(VerticalAlignment.CENTER);
         int rowNum = 1;
+        //插入数据
         for (int i = 0; i < bpjPersonList.size(); i++) {
             bp = bpjPersonList.get(i);
-            Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(bp.getName());
-            row.createCell(1).setCellValue(bp.getId());
-            row.createCell(2).setCellValue(bp.getUass());
-            row.createCell(3).setCellValue(bp.getSelfevaluation());
-            row.createCell(4).setCellValue(bp.getSuperior());
-            row.createCell(5).setCellValue(bp.getSuperiorNm());
-            row.createCell(6).setCellValue(bp.getEqual());
-            row.createCell(7).setCellValue(bp.getEqualNm());
-            row.createCell(8).setCellValue(bp.getSubordinate());
-            row.createCell(9).setCellValue(bp.getSubordinateNm());
-            row.createCell(10).setCellValue(bp.getTotalscore());
-            row.createCell(11).setCellValue(bp.getTotalNm());
+            setBpjperson(bp);
+            headerRow = sheet.createRow(rowNum++);
+            headerRow.setHeightInPoints((short) 30);
+            cell = headerRow.createCell(0);
+            cell.setCellValue(bp.getName());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue(bp.getUass());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(2);
+            cell.setCellValue(bp.getSelfevaluation());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(3);
+            cell.setCellValue(bp.getTotalscore());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(4);
+            cell.setCellValue(bp.getTotalNm());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(5);
+            cell.setCellValue(bp.getSuperior());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(6);
+            cell.setCellValue(bp.getSuperiorNm());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(7);
+            cell.setCellValue(bp.getEqual());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(8);
+            cell.setCellValue(bp.getEqualNm());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(9);
+            cell.setCellValue(bp.getSubordinate());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(10);
+            cell.setCellValue(bp.getSubordinateNm());
+            cell.setCellStyle(xssfCellStyle2);
         }
-        sheet.autoSizeColumn(0);
-        sheet.autoSizeColumn(1);
-        sheet.autoSizeColumn(2);
-        sheet.autoSizeColumn(3);
-        sheet.autoSizeColumn(4);
-        sheet.autoSizeColumn(5);
-        sheet.autoSizeColumn(6);
-        sheet.autoSizeColumn(7);
-        sheet.autoSizeColumn(8);
-        sheet.autoSizeColumn(9);
-        sheet.autoSizeColumn(10);
-        sheet.autoSizeColumn(11);
         try (OutputStream outputStream = response.getOutputStream()) {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("Content-Disposition", "attachment; filename" + URLEncoder.encode("resoult.xlsx","UTF-8"));
@@ -204,6 +261,37 @@ public class AdminController {
             hs.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    //将数据库中值为0的数据，在导出excel的时候转换为null
+    private void setBpjperson(BpjPerson bpjperson) {
+        if(bpjperson.getSelfevaluation() != null && bpjperson.getSelfevaluation().equals("0")) {
+            bpjperson.setSelfevaluation(null);
+        }
+        if(bpjperson.getEqual() != null && bpjperson.getEqual().equals("0")){
+            bpjperson.setEqual(null);
+        }
+        if(bpjperson.getSubordinate() != null && bpjperson.getSubordinate().equals("0")){
+            bpjperson.setSubordinate(null);
+        }
+        if(bpjperson.getSuperior() != null && bpjperson.getSuperior().equals("0")){
+            bpjperson.setSuperior(null);
+        }
+        if(bpjperson.getTotalscore() != null && bpjperson.getTotalscore().equals("0")){
+            bpjperson.setTotalscore(null);
+        }
+        if(bpjperson.getEqualNm() != null && bpjperson.getEqualNm().equals("0")){
+            bpjperson.setEqualNm(null);
+        }
+        if(bpjperson.getSubordinateNm() != null && bpjperson.getSubordinateNm().equals("0")){
+            bpjperson.setSubordinateNm(null);
+        }
+        if(bpjperson.getSuperiorNm() != null && bpjperson.getSuperiorNm().equals("0")){
+            bpjperson.setSuperiorNm(null);
+        }
+        if(bpjperson.getTotalNm() != null && bpjperson.getTotalNm().equals("0")){
+            bpjperson.setTotalNm(null);
         }
     }
 

@@ -26,16 +26,25 @@ public class TestQuestionController {
      * @param role
      * @return
      */
-    @GetMapping("/Qexams/{role}")
-    public ApiResult findQuestion(@PathVariable("role") String role){
+    @GetMapping("/Qexams/{role}/{pjId}/{bpjId}")
+    public ApiResult findQuestion(@PathVariable("role") String role, @PathVariable("pjId") String pjId, @PathVariable("bpjId") String bpjId) {
         System.out.println("根据role，返回自评或他评试题");
         List<Question> questionList = questionService.findQuestion(role);
-        if(questionList == null){
-            return ApiResultHandler.buildApiResult(10000,"请求失败",null);
+        System.out.println("role ===================="+ role);
+        if (role.equals("1")) {
+            SelfScore selfScore = questionService.findSelfScore(pjId);
+            if(selfScore == null){
+                return ApiResultHandler.success(questionList);
+            }
+        } else if (role.equals("2")) {
+            BpjPerson bpjPerson = questionService.findScore(pjId, bpjId);
+            System.out.println("++=================");
+            if (bpjPerson == null) {
+
+                return ApiResultHandler.success(questionList);
+            }
         }
-        return ApiResultHandler.success(questionList);
+        return ApiResultHandler.buildApiResult(10000, "已评价", null);
     }
-
-
 
 }

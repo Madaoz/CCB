@@ -17,11 +17,10 @@ public class SelfEvaluationController {
     private SelfEvaluationImpl selfEvaluationService;
 
     /**
-     * 根据用户
+     * 根据用户8位员工编号在leaderinfo表中查询是否需要自评
      * @param userId
      * @return
      */
-    //根据用户id，查询是否需要自评价
     @GetMapping("/selfExams/{userId}")
     public ApiResult findSelf(@PathVariable("userId") String userId) {
         System.out.println("根据用户id，查询自评价信息，是否需要自评价");
@@ -29,6 +28,11 @@ public class SelfEvaluationController {
         return ApiResultHandler.success(selfScoreList);
     }
 
+    /**
+     * 自评完，前端返回得分，更新到leaderinfo表中自评得分字段
+     * @param selfScore
+     * @return
+     */
     @PutMapping("/selfExamsScore")
     public ApiResult insertScore(@RequestBody SelfScore selfScore) {
         System.out.println("toString: ======="+selfScore.getSelfevaluation());

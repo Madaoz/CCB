@@ -11,7 +11,7 @@ public class User {
     private String userUass;
     //所属机构号
     private String userInstName;
-    //角色标识（0：管理员，1：领导，3：员工）
+    //角色标识（0：管理员，2：用户）
     private String role;
     //职等
     private String grade;

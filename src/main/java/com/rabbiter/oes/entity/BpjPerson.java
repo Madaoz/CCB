@@ -5,6 +5,8 @@ public class BpjPerson {
     /**
      * 与score_manage表字段对应
      */
+    private String pjId;
+
     private String bpjName;
 
     private String bpjId;
@@ -39,11 +41,16 @@ public class BpjPerson {
     private String totalscore;
     //总评价人数
     private String totalNm;
-
-    private String filePath;
-    private String fileName;
     //所属机构
     private String instName;
+
+    public String getPjId() {
+        return pjId;
+    }
+
+    public void setPjId(String pjId) {
+        this.pjId = pjId;
+    }
 
     public String getInstName() {
         return instName;
@@ -51,22 +58,6 @@ public class BpjPerson {
 
     public void setInstName(String instName) {
         this.instName = instName;
-    }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public String getBpjName() {

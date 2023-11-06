@@ -1,16 +1,12 @@
 package com.rabbiter.oes.service;
-
-import com.rabbiter.oes.entity.Admin;
 import com.rabbiter.oes.entity.User;
-
-import java.util.List;
 
 public interface LoginService {
 
-    public Admin adminLogin(Integer username, String password);
+    //通过8位员工编号登录
+    User userLoginById(String userId,String passWord);
 
-    public User userLogin(String userId,String passWord);
-    public User userLogin1(String userId,String passWord);
+    //通过uass编号登录
+    User userLoginByUass(String userId,String passWord);
 
-    public List<User> leaderId(String userIntNO);
 }

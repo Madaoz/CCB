@@ -51,14 +51,21 @@ public class OthersEvaluationController {
         return ApiResultHandler.success(othersEvaluationService.findByUass(userId));
     }
 
+    /**
+     * 前端评价完，返回评价得分，数据库更新score_manage表的得分
+     * 根据score_manage表中得分情况，更新leaderinfo表中的各级平均分，总得分以及各级评价人数和总人数
+     * @param otherScore
+     * @return
+     */
     @PutMapping("/othersExamsScore")
     public ApiResult updataOthersScore(@RequestBody OtherScore otherScore) {
         System.out.println("toString: ======="+otherScore.getScore());
         //前端评测完他人，更新数据库表score_manage
         int sc = othersEvaluationService.updataOthersScore(otherScore);
         if (sc != 0) {
-            //更新完score_manage,接着更新leaderinfo表
+            //更新完score_manage,接着更新leaderinfo表，各级评价平均分和各级评价人数
             int leader = othersEvaluationService.updateLeaderInfo();
+            //更新leaderinfo表中总得分和总评价人数
             othersEvaluationService.updateNm();
             return ApiResultHandler.buildApiResult(200,"添加成功",sc);
         }
