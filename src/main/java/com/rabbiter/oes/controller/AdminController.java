@@ -8,17 +8,21 @@ import com.rabbiter.oes.entity.BpjPerson;
 import com.rabbiter.oes.serviceimpl.AdminServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.util.StringUtil;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -140,6 +144,45 @@ public class AdminController {
             }
         }
         return ApiResultHandler.success(bpjPersonList);
+    }
+
+
+    /**
+     * 管理员导入模板文件发起评价
+     * @param file
+     * @return
+     */
+    @PostMapping ("/upload")
+    public ApiResult uploadFile(@RequestParam("file") MultipartFile file,HttpServletResponse response) throws ServletException, IOException {
+        Workbook workbook = new XSSFWorkbook(file.getInputStream());
+        Sheet sheet = workbook.getSheetAt(0);
+        int rows = sheet.getLastRowNum();
+        for (int i=0; i<=rows; i++){
+            String pjId = sheet.getRow(i).getCell(0).toString();
+            String pjName = sheet.getRow(i).getCell(1).toString();
+            String pjUass = sheet.getRow(i).getCell(2).toString();
+            String pjInstname = sheet.getRow(i).getCell(3).toString();
+            String bpjId = sheet.getRow(i).getCell(4).toString();
+            String bpjName = sheet.getRow(i).getCell(5).toString();
+            String bpjUass = sheet.getRow(i).getCell(6).toString();
+            String bpjInstname = sheet.getRow(i).getCell(7).toString();
+            String level = sheet.getRow(i).getCell(8).toString();
+            //将评价人信息导入userinfo()
+            //查询是否存在，若不存在进行新增，若存在，对比instname是否需要更新
+
+            //将被评价人信息导入leaderinfo
+            //查询是否存在，若不存在进行新增，若存在，对比instname是否需要更新
+
+
+            //将评价关系导入score_manager
+
+
+
+
+
+        }
+        return  ApiResultHandler.buildApiResult(200,"请求成功",null);
+
     }
 
     /**
