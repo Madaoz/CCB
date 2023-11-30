@@ -15,4 +15,10 @@ public interface OthersEvaluationService {
     int updateLeaderInfo();
     int updateNm();
 
+//    int updateMark(OtherScore otherScore);
+
+    int updateLeaderMark();
+
+    int updateLeaderMarkTotal();
+
 }

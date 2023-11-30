@@ -15,6 +15,8 @@ public class BpjPerson {
 
     private String score;
 
+    private String level;
+
     /**
      * 与leaderinfo表字段对应
      */
@@ -43,6 +45,74 @@ public class BpjPerson {
     private String totalNm;
     //所属机构
     private String instName;
+
+    private String scoreA;
+
+    private String scoreB;
+
+    private String scoreC;
+
+    private String scoreD;
+
+    private String scoreE;
+
+    private String markTotalScore;
+
+    public String getScoreA() {
+        return scoreA;
+    }
+
+    public void setScoreA(String scoreA) {
+        this.scoreA = scoreA;
+    }
+
+    public String getScoreB() {
+        return scoreB;
+    }
+
+    public void setScoreB(String scoreB) {
+        this.scoreB = scoreB;
+    }
+
+    public String getScoreC() {
+        return scoreC;
+    }
+
+    public void setScoreC(String scoreC) {
+        this.scoreC = scoreC;
+    }
+
+    public String getScoreD() {
+        return scoreD;
+    }
+
+    public void setScoreD(String scoreD) {
+        this.scoreD = scoreD;
+    }
+
+    public String getScoreE() {
+        return scoreE;
+    }
+
+    public void setScoreE(String scoreE) {
+        this.scoreE = scoreE;
+    }
+
+    public String getMarkTotalScore() {
+        return markTotalScore;
+    }
+
+    public void setMarkTotalScore(String markTotalScore) {
+        this.markTotalScore = markTotalScore;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 
     public String getPjId() {
         return pjId;
@@ -186,5 +256,16 @@ public class BpjPerson {
 
     public void setTotalNm(String totalNm) {
         this.totalNm = totalNm;
+    }
+
+    @Override
+    public String toString() {
+        return "info{  " + "pjId= " + pjId + "    " + "bpjName= " + bpjName + "    " + "bpjId= " + bpjId + "    " + "bpjUass" +
+                bpjUass + "    " + "score= " + score + "    " + "id= " + id + "    " + "name= " + name + "    " + "uass= " + uass + "    " +
+                "selfevaluation= " + selfevaluation + "    " + "superior= " + superior + "    " + "superiorNm= " + superiorNm +
+                "    " + "equal= " + equal + "    " + "equalNm= " + equalNm + "    " + "" + "subordinate= " + subordinate + "    " +
+                "subordinateNm= " + subordinateNm + "    " + "totalscore= " + totalscore + "    " + "totalNm= " + totalNm + "    " +
+                "instName= " + instName + "scoreA = " + scoreA + "    scoreB = " + scoreB + "   scoreC = " + scoreC + "   scoreD = " +
+                scoreD + "   scoreE = " + scoreE + '}';
     }
 }

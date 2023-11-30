@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rabbiter.oes.entity.*;
 import com.rabbiter.oes.serviceimpl.SelfEvaluationImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,8 @@ import java.util.List;
 
 @RestController
 public class SelfEvaluationController {
+
+    private static final Logger logger = LogManager.getLogger(SelfEvaluationController.class);
 
     @Autowired
     private SelfEvaluationImpl selfEvaluationService;
@@ -23,8 +27,9 @@ public class SelfEvaluationController {
      */
     @GetMapping("/selfExams/{userId}")
     public ApiResult findSelf(@PathVariable("userId") String userId) {
-        System.out.println("根据用户id，查询自评价信息，是否需要自评价");
+        logger.info("=========查询是否需要自评===========");
         List<SelfScore> selfScoreList = selfEvaluationService.findSelf(userId);
+        logger.info("==========查询结束============");
         return ApiResultHandler.success(selfScoreList);
     }
 
@@ -35,11 +40,13 @@ public class SelfEvaluationController {
      */
     @PutMapping("/selfExamsScore")
     public ApiResult insertScore(@RequestBody SelfScore selfScore) {
-        System.out.println("toString: ======="+selfScore.getSelfevaluation());
+        logger.info("===========自评结束，更新leaderinfo表的自评得分数据===========");
         int sc = selfEvaluationService.insertScore(selfScore);
         if (sc != 0) {
+            logger.info("============更新结束============");
             return ApiResultHandler.buildApiResult(200,"添加成功",sc);
         }
+        logger.info("=============更新失败=============");
         return ApiResultHandler.buildApiResult(400,"添加失败",sc);
     }
 

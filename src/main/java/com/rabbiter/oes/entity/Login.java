@@ -28,4 +28,9 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "info{  " + "    " + "username= " + username + "    " + "useruass= " + useruass + '}';
+    }
 }

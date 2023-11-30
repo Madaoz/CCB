@@ -1,9 +1,18 @@
 package com.rabbiter.oes.entity;
 
 public class Question {
-    String id;
-    String qu;
-    String role;
+    private String id;
+    private String qu;
+    private String role;
+    private String quMark;
+
+    public String getQuMark() {
+        return quMark;
+    }
+
+    public void setQuMark(String quMark) {
+        this.quMark = quMark;
+    }
 
     public String getId() {
         return id;
@@ -27,5 +36,10 @@ public class Question {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "info{   " + "    " + "id= " + id + "    " + "qu= " + qu + "    " + "role= " + role + "  quMark = " + quMark + '}';
     }
 }

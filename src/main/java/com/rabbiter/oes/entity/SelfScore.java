@@ -31,4 +31,9 @@ public class SelfScore {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "info{   " + "    " + "name= " + name + "    " + "userId= " + userId + "    " + "selfevaluation= " + selfevaluation + '}';
+    }
 }

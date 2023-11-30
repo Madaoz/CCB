@@ -29,10 +29,16 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
         List<BpjPerson> bpjPersonList = othersEvaluationMapper.findByUass(userId);
         return bpjPersonList;
     }
+
     @Override
     public int updataOthersScore(OtherScore otherScore){
         return othersEvaluationMapper.updataOthersScore(otherScore);
     }
+//
+//    @Override
+//    public int updateMark(OtherScore otherScore){
+//        return othersEvaluationMapper.updateMark(otherScore);
+//    }
 
     @Override
     public int updateNm(){
@@ -44,6 +50,14 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
         return othersEvaluationMapper.updateLeaderInfo();
     }
 
+    @Override
+    public int updateLeaderMark(){
+        return othersEvaluationMapper.updateLeaderMark();
+    }
 
+    @Override
+    public int updateLeaderMarkTotal(){
+        return othersEvaluationMapper.updateLeaderMarkTotal();
+    }
 
 }

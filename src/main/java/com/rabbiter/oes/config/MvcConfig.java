@@ -22,13 +22,13 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/login");
     }
 
-
     @Bean
     public CorsFilter corsFilter() {
         // 1.创建 CORS 配置对象
         CorsConfiguration config = new CorsConfiguration();
         // 支持域
-        config.addAllowedOrigin("*");
+       // config.addAllowedOrigin("*");
+        config.addAllowedOriginPattern("*");
         // 是否发送 Cookie
         config.setAllowCredentials(true);
         // 支持请求方式
