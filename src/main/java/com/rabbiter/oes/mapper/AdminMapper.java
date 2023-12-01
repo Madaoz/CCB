@@ -59,7 +59,7 @@ public interface AdminMapper {
     @Select("select * from score_manage where pj_id = #{pjId} and bpj_id = #{bpjId}")
     BpjPerson findScoreManage(String pjId,String bpjId);
     //批量导入勾稽关系表
-    @Insert("insert into score_manage (pj_id ,pj_name ,pj_uass ,pj_instname ,bpj_id ,bpj_name ,bpj_uass ,bpj_instname ,level) values(#{pjId},#{pjName},#{pjUass},#{pjInstname},#{bpjId},#{bpjName},#{bpjUass},#{bpjInstname},#{level})")
+    @Insert("insert into score_manage (pj_id ,pj_name ,pj_uass ,pj_instname ,bpj_id ,bpj_name ,bpj_uass ,bpj_instname ,level,submit) values(#{pjId},#{pjName},#{pjUass},#{pjInstname},#{bpjId},#{bpjName},#{bpjUass},#{bpjInstname},#{level},'0')")
     int insertScoreManage(String pjId,String pjName,String pjUass,String pjInstname,String bpjId,String bpjName,String bpjUass,String bpjInstname,String level);
     //更新评价人的机构信息
     @Update("update score_manage set pj_instname = #{pjInstname} where pj_id = #{pjId}")

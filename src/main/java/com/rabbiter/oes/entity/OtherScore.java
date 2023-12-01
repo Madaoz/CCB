@@ -1,5 +1,8 @@
 package com.rabbiter.oes.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OtherScore {
 
     private String pjid;
@@ -17,6 +20,26 @@ public class OtherScore {
     private String scoreD;
 
     private String scoreE;
+
+    private List<Option> optionList;
+
+    private String submit;
+
+    public String getSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(String submit) {
+        this.submit = submit;
+    }
+
+    public List<Option> getOptionList() {
+        return optionList;
+    }
+
+    public void setOptionList(List<Option> optionList) {
+        this.optionList = optionList;
+    }
 
     public String getScoreA() {
         return scoreA;

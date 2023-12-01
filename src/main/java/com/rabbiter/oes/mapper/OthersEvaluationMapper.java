@@ -1,8 +1,10 @@
 package com.rabbiter.oes.mapper;
 
 import com.rabbiter.oes.entity.BpjPerson;
+import com.rabbiter.oes.entity.Option;
 import com.rabbiter.oes.entity.OtherScore;
 import com.rabbiter.oes.entity.SelfScore;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -13,18 +15,24 @@ import java.util.List;
 public interface OthersEvaluationMapper {
 
     //查询未评价信息
-    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname ,level from score_manage where pj_id = #{userId} and (ISNULL(score) or score = '') order by bpj_uass ")
+//    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname ,level from score_manage where pj_id = #{userId} and (ISNULL(score) or score = '') order by bpj_uass ")
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname ,level from score_manage where pj_id = #{userId} and (ISNULL(score) or score = '')")
     List<BpjPerson> findById(String userId);
 
     //查询已评价人员
+//    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname " +
+//            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
     @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname " +
-            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
+            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by score")
     List<BpjPerson> findByUass(String userId);
 
-    //将他人测评得分更新到score_manage表中
+//    //将他人测评得分更新到score_manage表中
+//    @Update("Update score_manage set score = #{score},A = #{scoreA},B = #{scoreB},C = #{scoreC},D = #{scoreD} ,E = #{scoreE} where pj_id = #{pjid} and bpj_id = #{bpjid}")
+//    int updataOthersScore(OtherScore otherScore);
 
-    @Update("Update score_manage set score = #{score},A = #{scoreA},B = #{scoreB},C = #{scoreC},D = #{scoreD} ,E = #{scoreE} where pj_id = #{pjid} and bpj_id = #{bpjid}")
-    int updataOthersScore(OtherScore otherScore);
+    //将他人测评得分从optioninfo表中取数，更新到score_manage表中
+    @Update("update score_manage s set submit = '1' where pj_id = #{pjid} and bpj_id = #{bpjid}")
+    int updataOthersScore(String pjid,String bpjid);
 
     //根据勾稽关系标志，将上同下级得分的平均分更新到leaderinfo表中
     @Update("Update leaderinfo t set superior = (select avg(score) from score_manage where bpj_id = t.id and level = '2' and not(ISNULL(score) or score = ''))," +
@@ -54,4 +62,27 @@ public interface OthersEvaluationMapper {
             "totalNm = (coalesce(t.equalNm,0) + coalesce(t.superiorNm,0) + coalesce(t.subordinateNm,0))")
     int udeateNm();
 
+    //查询optioninfo表中是否存在对应关系
+    @Select("select * from optioninfo where pjId = #{pjId} and bpjId = #{bpjId}")
+    OtherScore findOption(String pjId,String bpjId);
+
+    //optioninfo表中插入新的对应关系
+    @Insert("insert into optioninfo (pjId,bpjId,quId,option,score) values (#{pjId},#{bpjId},#{quId},#{option},#{score})")
+    int insertOption(String pjId,String bpjId,int quId,int option,String score);
+
+    //更新optioninfo表中的题目的选项及得分
+    @Update("update optioninfo set option = #{option} where pjId = #{pjId} and bpjId = #{bpjId} and quId = #{quId}")
+    int updateOption(String pjId,String bpjId,int quId,int option);
+
+    @Update("update optioninfo set score = #{score} where pjId = #{pjId} and bpjId = #{bpjId}")
+    int updateOptionScore(String pjId,String bpjId,String score);
+
+    @Update("update score_manage set score = #{score},A = #{scoreA},B = #{scoreB},C = #{scoreC},D = #{scoreD},E = #{scoreE} where pj_id = #{pjid} and bpj_id = #{bpjid}")
+    int updateScoreManage(OtherScore otherScore);
+
+    @Select("select bpjId from optioninfo where pjId = #{pjid}")
+    List<Option> findBpjId(String pjid);
+
+    @Update("update score_manage set submit = '1' where pj_id = #{pjid} and bpj_id = #{bpjid}")
+    int updateSubmit(String pjid,String bpjid);
 }

@@ -21,7 +21,7 @@ public class SelfEvaluationImpl implements SelfEvaluationService {
     }
 
     @Override
-    public int insertScore(SelfScore selfScore){
-        return selfEvaluationMapper.insertScore(selfScore);
+    public int updateScore(SelfScore selfScore){
+        return selfEvaluationMapper.updateScore(selfScore);
     }
 }

@@ -440,7 +440,7 @@ public class AdminController {
 
     /**
      * 管理员上传文件，批量导入用户信息
-     *
+     * 且更新leaderinfo用户信息以及score_manage表勾稽关系
      * @param file
      * @param response
      * @return

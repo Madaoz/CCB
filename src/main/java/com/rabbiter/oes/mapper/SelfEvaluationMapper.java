@@ -1,4 +1,5 @@
 package com.rabbiter.oes.mapper;
+
 import com.rabbiter.oes.entity.*;
 import org.apache.ibatis.annotations.*;
 
@@ -11,6 +12,6 @@ public interface SelfEvaluationMapper {
     List<SelfScore> findSelf(String userId);
 
     //更新表中的自评得分
-    @Update("update leaderinfo set selfevaluation = #{selfevaluation} where id = #{userId}")
-    int insertScore(SelfScore selfScore);
+    @Update("update leaderinfo set selfevaluation = #{selfevaluation} , selfA = #{selfA},selfB = #{selfB},selfC = #{selfC},selfD = #{selfD},selfE = #{selfE} where id = #{userId}")
+    int updateScore(SelfScore selfScore);
 }

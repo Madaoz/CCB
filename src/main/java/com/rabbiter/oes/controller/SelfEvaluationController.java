@@ -39,9 +39,9 @@ public class SelfEvaluationController {
      * @return
      */
     @PutMapping("/selfExamsScore")
-    public ApiResult insertScore(@RequestBody SelfScore selfScore) {
+    public ApiResult updateScore(@RequestBody SelfScore selfScore) {
         logger.info("===========自评结束，更新leaderinfo表的自评得分数据===========");
-        int sc = selfEvaluationService.insertScore(selfScore);
+        int sc = selfEvaluationService.updateScore(selfScore);
         if (sc != 0) {
             logger.info("============更新结束============");
             return ApiResultHandler.buildApiResult(200,"添加成功",sc);

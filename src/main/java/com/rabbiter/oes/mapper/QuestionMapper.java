@@ -16,9 +16,7 @@ public interface QuestionMapper {
 
     //根据pjid和bpjid在score_manage表中的对应关系，查看是否已评价
     @Select("select score from score_manage where pj_id = #{pjId} and bpj_id = #{bpjId}")
-    BpjPerson
-
-    findScore(String pjId,String bpjId);
+    BpjPerson findScore(String pjId,String bpjId);
 
     //查询是否已自评
     @Select("select selfevaluation from leaderinfo where id = #{pjId}")
