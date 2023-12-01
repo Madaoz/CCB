@@ -307,16 +307,26 @@ public class AdminController {
         sheet.setColumnWidth(5, 25 * 256);
         sheet.setColumnWidth(6, 25 * 256);
         sheet.setColumnWidth(7, 25 * 256);
+        sheet.setColumnWidth(8, 25 * 256);
+        sheet.setColumnWidth(9, 25 * 256);
+        sheet.setColumnWidth(10, 25 * 256);
+        sheet.setColumnWidth(11, 25 * 256);
+        sheet.setColumnWidth(12, 25 * 256);
 
         List<String> titleList = new LinkedList<>();
         titleList.add("姓名");
         titleList.add("员工编号");
         titleList.add("所在部门");
-        titleList.add("’以身作则‘得分");
-        titleList.add("’共启愿景‘得分");
-        titleList.add("’挑战现状‘得分");
-        titleList.add("’使众人行‘得分");
-        titleList.add("’激励人心‘得分");
+        titleList.add("’以身作则——自测‘得分");
+        titleList.add("’以身作则——他测‘得分");
+        titleList.add("’共启愿景——自测‘得分");
+        titleList.add("’共启愿景——他测‘得分");
+        titleList.add("’挑战现状——自测‘得分");
+        titleList.add("’挑战现状——他测‘得分");
+        titleList.add("’使众人行——自测‘得分");
+        titleList.add("’使众人行——他测‘得分");
+        titleList.add("’激励人心——自测‘得分");
+        titleList.add("’激励人心——他测‘得分");
         for (int i = 0; i < titleList.size(); i++) {
             cell = headerRow.createCell(i);
             cell.setCellStyle(xssfCellStyle1);
@@ -350,22 +360,42 @@ public class AdminController {
             cell.setCellStyle(xssfCellStyle2);
 
             cell = headerRow.createCell(3);
-            cell.setCellValue(bp.getScoreA());
+            cell.setCellValue(bp.getSelfA());
             cell.setCellStyle(xssfCellStyle2);
 
             cell = headerRow.createCell(4);
-            cell.setCellValue(bp.getScoreB());
+            cell.setCellValue(bp.getScoreA());
             cell.setCellStyle(xssfCellStyle2);
 
             cell = headerRow.createCell(5);
-            cell.setCellValue(bp.getScoreC());
+            cell.setCellValue(bp.getSelfB());
             cell.setCellStyle(xssfCellStyle2);
 
             cell = headerRow.createCell(6);
-            cell.setCellValue(bp.getScoreD());
+            cell.setCellValue(bp.getScoreB());
             cell.setCellStyle(xssfCellStyle2);
 
             cell = headerRow.createCell(7);
+            cell.setCellValue(bp.getSelfC());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(8);
+            cell.setCellValue(bp.getScoreC());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(9);
+            cell.setCellValue(bp.getSelfD());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(10);
+            cell.setCellValue(bp.getScoreD());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(11);
+            cell.setCellValue(bp.getSelfE());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(12);
             cell.setCellValue(bp.getScoreE());
             cell.setCellStyle(xssfCellStyle2);
 

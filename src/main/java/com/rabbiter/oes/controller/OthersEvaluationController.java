@@ -123,6 +123,12 @@ public class OthersEvaluationController {
         return ApiResultHandler.buildApiResult(400, "添加失败", sc);
     }
 
+    /**
+     * 汇总提交，将score_manage表中的submit标志改为1
+     * 以及更新leaderinfo表中的数据
+     * @param pjid
+     * @return
+     */
     @PutMapping("/allSubmit/{pjid}")
     public ApiResult updateSubmit(@PathVariable String pjid){
 

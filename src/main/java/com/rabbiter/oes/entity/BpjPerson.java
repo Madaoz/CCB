@@ -17,6 +17,8 @@ public class BpjPerson {
 
     private String level;
 
+    private String submit;
+
     /**
      * 与leaderinfo表字段对应
      */
@@ -57,6 +59,64 @@ public class BpjPerson {
     private String scoreE;
 
     private String markTotalScore;
+
+    private String selfA;
+
+    private String selfB;
+
+    private String selfC;
+
+    private String selfD;
+
+    private String selfE;
+
+    public String getSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(String submit) {
+        this.submit = submit;
+    }
+
+    public String getSelfA() {
+        return selfA;
+    }
+
+    public void setSelfA(String selfA) {
+        this.selfA = selfA;
+    }
+
+    public String getSelfB() {
+        return selfB;
+    }
+
+    public void setSelfB(String selfB) {
+        this.selfB = selfB;
+    }
+
+    public String getSelfC() {
+        return selfC;
+    }
+
+    public void setSelfC(String selfC) {
+        this.selfC = selfC;
+    }
+
+    public String getSelfD() {
+        return selfD;
+    }
+
+    public void setSelfD(String selfD) {
+        this.selfD = selfD;
+    }
+
+    public String getSelfE() {
+        return selfE;
+    }
+
+    public void setSelfE(String selfE) {
+        this.selfE = selfE;
+    }
 
     public String getScoreA() {
         return scoreA;

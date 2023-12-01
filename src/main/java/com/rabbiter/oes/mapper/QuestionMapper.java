@@ -14,8 +14,12 @@ public interface QuestionMapper {
     @Select("select qu,qu_Mark from question_manage where qu_role = #{role} order by qu_id")
     List<Question> findQuestion(String role);
 
+//    //根据pjid和bpjid在score_manage表中的对应关系，查看是否已评价
+//    @Select("select score from score_manage where pj_id = #{pjId} and bpj_id = #{bpjId}")
+//    BpjPerson findScore(String pjId,String bpjId);
+
     //根据pjid和bpjid在score_manage表中的对应关系，查看是否已评价
-    @Select("select score from score_manage where pj_id = #{pjId} and bpj_id = #{bpjId}")
+    @Select("select submit from score_manage where pj_id = #{pjId} and bpj_id = #{bpjId}")
     BpjPerson findScore(String pjId,String bpjId);
 
     //查询是否已自评

@@ -70,14 +70,14 @@ public interface OthersEvaluationMapper {
     @Insert("insert into optioninfo (pjId,bpjId,quId,option,score) values (#{pjId},#{bpjId},#{quId},#{option},#{score})")
     int insertOption(String pjId,String bpjId,int quId,int option,String score);
 
-    //更新optioninfo表中的题目的选项及得分
+    //更新optioninfo表中的题目的选项
     @Update("update optioninfo set option = #{option} where pjId = #{pjId} and bpjId = #{bpjId} and quId = #{quId}")
     int updateOption(String pjId,String bpjId,int quId,int option);
 
-    @Update("update optioninfo set score = #{score} where pjId = #{pjId} and bpjId = #{bpjId}")
+    @Update("update optioninfo set score = ROUND(#{score},1) where pjId = #{pjId} and bpjId = #{bpjId}")
     int updateOptionScore(String pjId,String bpjId,String score);
 
-    @Update("update score_manage set score = #{score},A = #{scoreA},B = #{scoreB},C = #{scoreC},D = #{scoreD},E = #{scoreE} where pj_id = #{pjid} and bpj_id = #{bpjid}")
+    @Update("update score_manage set score = ROUND(#{score},1),A = #{scoreA},B = #{scoreB},C = #{scoreC},D = #{scoreD},E = #{scoreE} where pj_id = #{pjid} and bpj_id = #{bpjid}")
     int updateScoreManage(OtherScore otherScore);
 
     @Select("select bpjId from optioninfo where pjId = #{pjid}")
