@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+        <property name="LOG_FILE" value="C:\Users\Administrator\Desktop\code\log"/>
+<!--    <property name="LOG_FILE" value="logs"/>-->
+
+    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}/System.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每天滚动 -->
+            <fileNamePattern>${LOG_FILE}/%d{yyyy-MM-dd}-System.log</fileNamePattern>
+            <!-- 保存 30 天的历史记录 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+<root level="INFO">
+    <appender-ref ref="FILE-ROLLING"/>
+</root>
+        </configuration>

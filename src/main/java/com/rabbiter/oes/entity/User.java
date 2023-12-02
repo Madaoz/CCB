@@ -18,6 +18,46 @@ public class User {
 
     private String score;
 
+    private String pjId;
+
+    private String pjName;
+
+    private String pjInstname;
+
+    private String pjUass;
+
+    public String getPjId() {
+        return pjId;
+    }
+
+    public void setPjId(String pjId) {
+        this.pjId = pjId;
+    }
+
+    public String getPjName() {
+        return pjName;
+    }
+
+    public void setPjName(String pjName) {
+        this.pjName = pjName;
+    }
+
+    public String getPjInstname() {
+        return pjInstname;
+    }
+
+    public void setPjInstname(String pjInstname) {
+        this.pjInstname = pjInstname;
+    }
+
+    public String getPjUass() {
+        return pjUass;
+    }
+
+    public void setPjUass(String pjUass) {
+        this.pjUass = pjUass;
+    }
+
     public String getScore() {
         return score;
     }
@@ -80,5 +120,12 @@ public class User {
 
     public void setUserInstName(String userInstName) {
         this.userInstName = userInstName;
+    }
+
+    @Override
+    public String toString(){
+        return "info{   "+"userName= "+userName+"    "+"userId= "+userId+"    "+"userUass= "+userUass+"    "+
+                "userInstName= "+userInstName+"    "+"role= "+role+"    "+"pjId= "+pjId+"    "+"pjName= "+pjName+
+                "    "+"pjUass= "+pjUass+"    "+"pjInstname= "+pjInstname+'}';
     }
 }

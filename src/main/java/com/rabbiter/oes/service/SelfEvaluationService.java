@@ -10,5 +10,5 @@ public interface SelfEvaluationService {
 
     List<SelfScore> findSelf(String userId);
 
-    int insertScore(SelfScore selfScore);
+    int updateScore(SelfScore selfScore);
 }

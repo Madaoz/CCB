@@ -3,6 +3,8 @@ package com.rabbiter.oes.controller;
 import com.rabbiter.oes.entity.*;
 import com.rabbiter.oes.serviceimpl.LoginServiceImpl;
 import com.rabbiter.oes.util.ApiResultHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class LoginController {
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
 
     @Autowired
     private LoginServiceImpl loginService;
@@ -29,6 +32,7 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ApiResult login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+        logger.info("============用户登录==============");
         String userId = login.getUsername();
         String passWord = login.getPassword();
         String useruass = login.getUsername();
@@ -37,14 +41,14 @@ public class LoginController {
         //用户使用uass登录
         User user2 = loginService.userLoginByUass(useruass,passWord);
         if(user1 != null){
-            Cookie token1 = new Cookie("rb_token",user1.getUserUass());
+            Cookie token1 = new Cookie("rb_token",user1.getUserId());
             token1.setPath("/");
             Cookie role1 = new Cookie("rb_role",user1.getRole());
             role1.setPath("/");
-
             //将cookie对象加入response响应
             response.addCookie(token1);
             response.addCookie(role1);
+            logger.info("=================使用8位编号登录成功============");
             return ApiResultHandler.buildApiResult(200, "请求成功", user1);
         }
         else if(user2 != null){
@@ -56,6 +60,7 @@ public class LoginController {
             //将cookie对象加入response响应
             response.addCookie(token2);
             response.addCookie(role2);
+            logger.info("=============使用uass登录成功================");
             return ApiResultHandler.buildApiResult(200, "请求成功", user2);
 
         }
@@ -64,6 +69,7 @@ public class LoginController {
 
     @PostMapping("/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("==================用户退出登录==============");
         Cookie token = new Cookie("rb_token", null);
         token.setPath("/");
         token.setMaxAge(0);
