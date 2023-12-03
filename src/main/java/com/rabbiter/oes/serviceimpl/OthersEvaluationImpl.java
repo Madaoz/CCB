@@ -1,7 +1,7 @@
 package com.rabbiter.oes.serviceimpl;
 
 import com.rabbiter.oes.entity.BpjPerson;
-import com.rabbiter.oes.entity.Option;
+import com.rabbiter.oes.entity.*;
 import com.rabbiter.oes.entity.OtherScore;
 import com.rabbiter.oes.entity.Question;
 import com.rabbiter.oes.mapper.OthersEvaluationMapper;

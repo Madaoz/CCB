@@ -22,8 +22,8 @@ public interface OthersEvaluationMapper {
     //查询已评价人员
 //    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname " +
 //            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by bpj_uass")
-    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname " +
-            "from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by score")
+    @Select("select bpj_name bpjName,bpj_id bpjId,score,bpj_instname instname, " +
+            " A scoreA,B scoreB,C scoreC,D scoreD,E scoreE from score_manage where pj_id = #{userId} and NOT (ISNULL(score) or score = '') order by score")
     List<BpjPerson> findByUass(String userId);
 
 //    //将他人测评得分更新到score_manage表中

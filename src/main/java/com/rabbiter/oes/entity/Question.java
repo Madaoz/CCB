@@ -5,6 +5,15 @@ public class Question {
     private String qu;
     private String role;
     private String quMark;
+    private String quMarkName;
+
+    public String getQuMarkName() {
+        return quMarkName;
+    }
+
+    public void setQuMarkName(String quMarkName) {
+        this.quMarkName = quMarkName;
+    }
 
     public String getQuMark() {
         return quMark;

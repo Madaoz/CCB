@@ -52,7 +52,7 @@ public class TestQuestionController {
             //查询score_manage表中的submit标志，若为0则还未最终提交，可继续测评.若为1则已最终提交，不可再次测评。
             BpjPerson bpjPerson = questionService.findScore(pjId, bpjId);
             System.out.println("++=================");
-            if (bpjPerson.getSubmit().equals('0')) {
+            if (bpjPerson.getSubmit().equals("0")) {
                 return ApiResultHandler.success(questionList);
             }
         }

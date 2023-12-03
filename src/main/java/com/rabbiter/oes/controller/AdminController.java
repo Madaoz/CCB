@@ -334,9 +334,11 @@ public class AdminController {
         }
         //设置数据行单元格格式
         XSSFFont font2 = hs.createFont();
+        //字体大小
         font2.setFontHeight((long) 12);
         XSSFCellStyle xssfCellStyle2 = hs.createCellStyle();
         xssfCellStyle2.setFont(font2);
+        //垂直、水平居中对齐
         xssfCellStyle2.setAlignment(HorizontalAlignment.CENTER);
         xssfCellStyle2.setVerticalAlignment(VerticalAlignment.CENTER);
         int rowNum = 1;
@@ -752,7 +754,6 @@ public class AdminController {
 //        File file2 = new File("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板\\导入模板.xlsx");
         File file2 = new File("/home/ap/ccb/filepath/file.xlsx");
 
-
         FileOutputStream fileOutputStream = null;
         FileInputStream fis = null;
         fis = new FileInputStream(file2);
@@ -761,14 +762,12 @@ public class AdminController {
         XSSFCellStyle cStyle = wb.createCellStyle();
         cStyle.setWrapText(true);
 
-
         cStyle.setDataFormat(wb.createDataFormat().getFormat("\"text\""));
 
         int index = 1;
         XSSFRow rowOut = sheetOut.createRow(index);
 
         Workbook workbook = new XSSFWorkbook(inputStream);
-
 
 //        Workbook workbook = WorkbookFactory.create(file1);
         Sheet sheet = workbook.getSheetAt(0);

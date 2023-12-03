@@ -170,7 +170,6 @@ public class OthersEvaluationController {
     /**
      * 目录"/option"为每次评价完后的保存功能
      * 更新或插入选项表optioninfo表
-     *
      * @param otherScore
      * @return
      */
@@ -205,7 +204,6 @@ public class OthersEvaluationController {
 
     /**
      * 每次用户保存评价选项，更新score_manage表中的ABCDE得分
-     *
      * @param otherScore
      * @return
      */
