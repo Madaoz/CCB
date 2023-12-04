@@ -33,7 +33,7 @@ public class ResetScoreController {
      * @return 返给前端选项详情
      */
     @GetMapping("/findOption/{pjId}/{bpjId}")
-    public ApiResult findOption(@PathVariable String pjId,String bpjId){
+    public ApiResult findOption(@PathVariable("pjId") String pjId,@PathVariable("bpjId")String bpjId){
 
         List<Option> options = resetScoreService.findOption(pjId,bpjId);
 

@@ -44,4 +44,6 @@ public interface AdminService{
     int resetLeaderInfo();
 
     int resetScoreManage();
+
+    int resetOptionInfo();
 }

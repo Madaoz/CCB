@@ -73,4 +73,7 @@ public interface AdminMapper {
     //清空score_manage表内所有字段数据
     @Delete("delete from score_manage")
     int resetScoreManage();
+    @Delete("delete from optioninfo")
+    int resetOptionInfo();
+
 }

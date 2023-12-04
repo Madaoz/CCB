@@ -105,8 +105,8 @@ public class OthersEvaluationController {
      * @param bpjid
      * @return
      */
-    @PutMapping("/othersExamsScore/{pjid}/{bpjid}")
-    public ApiResult updataOthersScore(@PathVariable String pjid,String bpjid) {
+    @GetMapping("/othersExamsScore/{pjid}/{bpjid}")
+    public ApiResult updataOthersScore(@PathVariable("pjid") String pjid,@PathVariable("bpjid")String bpjid) {
         logger.info("==========单个提交，更新score_manage表的submit=============");
 
         //前端评测完他人，更新数据库表score_manage
@@ -129,7 +129,7 @@ public class OthersEvaluationController {
      * @param pjid
      * @return
      */
-    @PutMapping("/allSubmit/{pjid}")
+    @GetMapping("/allSubmit/{pjid}")
     public ApiResult updateSubmit(@PathVariable String pjid){
 
         logger.info("==========汇总提交，更新score_manage表的submit=============");
@@ -171,7 +171,7 @@ public class OthersEvaluationController {
      * 目录"/option"为每次评价完后的保存功能
      * 更新或插入选项表optioninfo表
      *
-     * @param otherScore
+     * @param otherscore
      * @return
      */
     @PutMapping("/option")
@@ -179,9 +179,10 @@ public class OthersEvaluationController {
 
         logger.info("===========插入或更新optioninfo表==========" + otherScore.toString());
         int i = 0;
-        OtherScore oc = othersEvaluationService.findOption(otherScore.getPjid(), otherScore.getBpjid());
-        if (oc == null) {
-            for (i = 0; i <= otherScore.getOptionList().size(); i++) {
+        List<Option>  oc = othersEvaluationService.findOption(otherScore.getPjid(), otherScore.getBpjid());
+        if (oc == null || oc.size()==0) {
+            for (i = 0; i < otherScore.getOptionList().size(); i++) {
+                System.out.println("===========oc为空=============");
                 //optioninfo表中无对应关系，新增对应关系，且将题目及选项等信息写入
                 int insert = othersEvaluationService.insertOption(otherScore.getPjid(), otherScore.getBpjid(),
                         otherScore.getOptionList().get(i).getQuId(), otherScore.getOptionList().get(i).getOption(), otherScore.getScore());
@@ -190,7 +191,8 @@ public class OthersEvaluationController {
                 updateScoreManage(otherScore);
             }
         } else {
-            for (i = 0; i <= otherScore.getOptionList().size(); i++) {
+            System.out.println("===========oc不为空=============");
+            for (i = 0; i < otherScore.getOptionList().size(); i++) {
                 //optioninfo表中有对应关系，更新题目及选项等信息
                 int update = othersEvaluationService.updateOption(otherScore.getPjid(), otherScore.getBpjid(),
                         otherScore.getOptionList().get(i).getQuId(), otherScore.getOptionList().get(i).getOption());

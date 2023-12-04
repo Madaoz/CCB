@@ -968,8 +968,10 @@ public class AdminController {
         //重置score_manage表得分数据
         logger.info("--------重置score_manage表得分数据------");
         int j = adminService.resetScoreManage();
+        logger.info("--------重置optioninfo表得分数据------");
+        int k = adminService.resetOptionInfo();
         logger.info("=============重置结束================");
-        return ApiResultHandler.buildApiResult(200, "重置成功!", "leaderinfo表重置了：" + i + "行数据，scor_manage表重置了：" + j + "行数据");
+        return ApiResultHandler.buildApiResult(200, "重置成功!", "leaderinfo表重置了：" + i + "行数据，scor_manage表重置了：" + j + "行数据,optioninfo表重置了：" + k + "行数据");
     }
 
 }

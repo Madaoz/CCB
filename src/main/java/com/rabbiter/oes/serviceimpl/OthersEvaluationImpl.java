@@ -62,7 +62,7 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
     }
 
     @Override
-    public OtherScore findOption(String pjId,String bpjId){
+    public List<Option> findOption(String pjId,String bpjId){
         return othersEvaluationMapper.findOption(pjId,bpjId);
     }
 

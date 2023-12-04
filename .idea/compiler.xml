@@ -9,6 +9,7 @@
         <module name="OnlineExamSystem-v1.0" />
         <module name="OnlineExamSystemApi" />
         <module name="OnlineExamSystemApi - idea" />
+        <module name="test" />
         <module name="OnlineExamSystemApi-idea" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="OnlineExamSystemApi" options="-parameters" />
       <module name="OnlineExamSystemApi - idea" options="-parameters" />
       <module name="OnlineExamSystemApi-idea" options="-parameters" />
+      <module name="test" options="-parameters" />
     </option>
   </component>
 </project>

@@ -111,4 +111,9 @@ public class AdminServiceImpl implements AdminService {
     public int resetScoreManage(){
         return adminMapper.resetScoreManage();
     }
+    @Override
+    public int resetOptionInfo(){
+        return adminMapper.resetOptionInfo();
+    }
+
 }

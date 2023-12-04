@@ -21,7 +21,7 @@ public class OtherScore {
 
     private String scoreE;
 
-    private List<Option> optionList;
+    private ArrayList<Option> optionList;
 
     private String submit;
 
@@ -33,11 +33,11 @@ public class OtherScore {
         this.submit = submit;
     }
 
-    public List<Option> getOptionList() {
+    public ArrayList<Option> getOptionList() {
         return optionList;
     }
 
-    public void setOptionList(List<Option> optionList) {
+    public void setOptionList(ArrayList<Option> optionList) {
         this.optionList = optionList;
     }
 

@@ -1,10 +1,22 @@
 package com.rabbiter.oes.entity;
 
 public class Question {
-    private String id;
+    private int id;
     private String qu;
     private String role;
     private String quMark;
+    private String quMarkName;
+    public void setQuMarkName(String quMarkName) {
+        this.quMarkName = quMarkName;
+    }
+
+
+
+    public String getQuMarkName() {
+        return quMarkName;
+    }
+
+
 
     public String getQuMark() {
         return quMark;
@@ -14,11 +26,11 @@ public class Question {
         this.quMark = quMark;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

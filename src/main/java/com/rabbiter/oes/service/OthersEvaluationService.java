@@ -23,7 +23,7 @@ public interface OthersEvaluationService {
 
     int updateLeaderMarkTotal();
 
-    OtherScore findOption(String pjId,String bpjId);
+    List<Option> findOption(String pjId,String bpjId);
 
     int insertOption(String pjId,String bpjId,int quId,int option,String score);
 ;
