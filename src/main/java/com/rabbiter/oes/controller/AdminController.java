@@ -850,6 +850,13 @@ public class AdminController {
                         index++;
                         rowOut = sheetOut.createRow(index);
                     }
+
+                    if (levelX.equals("C") && partX.equals(part)) {
+                        //被同部门副总以下员工打分
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "0");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                    }
                     // }
                 }
             }
@@ -886,6 +893,9 @@ public class AdminController {
                     String partX = sheet.getRow(k).getCell(3).toString();
                     String levelX = sheet.getRow(k).getCell(7).toString();
                     String uassX = sheet.getRow(k).getCell(2).toString();
+                    if (!partX.equals(part)){
+                        break;
+                    }
                     //给本部门老总打分
                     if (levelX.equals("A") && partX.equals(part)) {
                         //给本部门老总打分
@@ -906,6 +916,13 @@ public class AdminController {
                         rowOut = sheetOut.createRow(index);
                         //被本部门其他副总评价
                         creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "1");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                    }
+
+                    if (levelX.equals("C") && partX.equals(part)) {
+                        //被本部门其他副员工价
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "0");
                         index++;
                         rowOut = sheetOut.createRow(index);
                     }
@@ -945,6 +962,9 @@ public class AdminController {
                     String partX = sheet.getRow(k).getCell(3).toString();
                     String levelX = sheet.getRow(k).getCell(7).toString();
                     String uassX = sheet.getRow(k).getCell(2).toString();
+                    if (!partX.equals(part)){
+                        break;
+                    }
                     if (levelX.equals("A") && partX.equals(part)) {
                         //给本部门老总打分
                         creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
@@ -980,9 +1000,9 @@ public class AdminController {
 //                    }
 //                }
 
-
             }
         }
+
         fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系生成\\勾稽关系表.xlsx");
 //        fileOutputStream = new FileOutputStream("/home/ap/ccb/filepath/勾稽关系表.xlsx");
 
