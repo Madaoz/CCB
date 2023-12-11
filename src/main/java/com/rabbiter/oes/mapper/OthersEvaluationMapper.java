@@ -57,9 +57,13 @@ public interface OthersEvaluationMapper {
     @Update("update leaderinfo t set markTotalScore = coalesce(t.scoreA,0) + coalesce(t.scoreB,0) + coalesce(t.scoreC,0) + coalesce(t.scoreD,0) + coalesce(t.scoreE,0)")
     int updateLeaderMarkTotal();
 
-    //更新总得分和总评价人数
-    @Update("UPDATE leaderinfo t set totalscore = (coalesce(t.equal,0) + coalesce(t.superior,0) + coalesce(t.subordinate,0))," +
-            "totalNm = (coalesce(t.equalNm,0) + coalesce(t.superiorNm,0) + coalesce(t.subordinateNm,0))")
+    //更新leaderinfo表中的总评价人数
+    @Update("update leaderinfo t set totalNm = (coalesce(t.equalNm,0) + coalesce(t.superiorNm,0) + coalesce(t.subordinateNm,0)) ")
+    int updateNum();
+
+    //更新总得分
+    @Update("UPDATE leaderinfo t set totalscore = CASE WHEN t.totalNm = 0 THEN 0.0" +
+            " ELSE (coalesce(t.equal,0.0) * t.equalNm + coalesce(t.superior,0.0) * t.superiorNm + coalesce(t.subordinate,0.0) * t.subordinateNm) / totalNm END")
     int udeateNm();
 
     //查询optioninfo表中是否存在对应关系
@@ -80,7 +84,7 @@ public interface OthersEvaluationMapper {
     @Update("update score_manage set score = ROUND(#{score},1),A = ROUND(#{scoreA},1),B = ROUND(#{scoreB},1),C = ROUND(#{scoreC},1),D = ROUND(#{scoreD},1),E = ROUND(#{scoreE},1) where pj_id = #{pjid} and bpj_id = #{bpjid}")
     int updateScoreManage(OtherScore otherScore);
 
-    @Select("select bpjId from optioninfo where pjId = #{pjid}")
+    @Select("select bpjId from optioninfo where pjId = #{pjid} group by bpjId")
     List<Option> findBpjId(String pjid);
 
     @Update("update score_manage set submit = '1' where pj_id = #{pjid} and bpj_id = #{bpjid}")

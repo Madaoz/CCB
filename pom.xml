@@ -148,7 +148,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.2.RELEASE</version>
                 <configuration>
-                    <mainClass>com.rabbiter.oes.OnlineystemApplication</mainClass>
+                    <mainClass>com.rabbiter.oes.OnlineExamSystemApplication</mainClass>
                     <finalName>OnlineExam</finalName>
                 </configuration>
                 <executions>

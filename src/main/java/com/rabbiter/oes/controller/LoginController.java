@@ -47,7 +47,9 @@ public class LoginController {
             role1.setPath("/");
             //将cookie对象加入response响应
             response.addCookie(token1);
-            response.addCookie(role1);
+            response.
+
+                    addCookie(role1);
             logger.info("=================使用8位编号登录成功============");
             return ApiResultHandler.buildApiResult(200, "请求成功", user1);
         }

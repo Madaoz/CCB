@@ -86,6 +86,7 @@ public class AdminController {
 
     /**
      * 管理员根据姓名查询得分信息
+     *
      * @param bpjPerson
      * @return 返回查询结果
      */
@@ -123,9 +124,9 @@ public class AdminController {
     public void down(HttpServletResponse response) throws IOException {
         System.out.println("管理员下载模板");
         logger.info("==============管理员开始下载模板====================");
-        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/file.xlsx");
+//        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/file.xlsx");
 //        XSSFWorkbook hs = new XSSFWorkbook("filepath/file.xlsx");
-//        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板\\导入模板.xlsx");
+        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板\\导入模板.xlsx");
 
 
         try (OutputStream outputStream = response.getOutputStream()) {
@@ -302,22 +303,22 @@ public class AdminController {
         sheet.setColumnWidth(0, 15 * 256);
         sheet.setColumnWidth(1, 15 * 256);
         sheet.setColumnWidth(2, 15 * 256);
-        sheet.setColumnWidth(3, 25 * 256);
-        sheet.setColumnWidth(4, 25 * 256);
-        sheet.setColumnWidth(5, 25 * 256);
-        sheet.setColumnWidth(6, 25 * 256);
-        sheet.setColumnWidth(7, 25 * 256);
-        sheet.setColumnWidth(8, 25 * 256);
-        sheet.setColumnWidth(9, 25 * 256);
-        sheet.setColumnWidth(10, 25 * 256);
-        sheet.setColumnWidth(11, 25 * 256);
-        sheet.setColumnWidth(12, 25 * 256);
+        sheet.setColumnWidth(3, 30 * 256);
+        sheet.setColumnWidth(4, 30 * 256);
+        sheet.setColumnWidth(5, 30 * 256);
+        sheet.setColumnWidth(6, 30 * 256);
+        sheet.setColumnWidth(7, 30 * 256);
+        sheet.setColumnWidth(8, 30 * 256);
+        sheet.setColumnWidth(9, 30 * 256);
+        sheet.setColumnWidth(10, 30 * 256);
+        sheet.setColumnWidth(11, 30 * 256);
+        sheet.setColumnWidth(12, 30 * 256);
 
         List<String> titleList = new LinkedList<>();
         titleList.add("姓名");
         titleList.add("员工编号");
         titleList.add("所在部门");
-        titleList.add("’以身作则——自测‘得分");
+        titleList.add("’以身作则——自测’得分");
         titleList.add("’以身作则——他测‘得分");
         titleList.add("’共启愿景——自测‘得分");
         titleList.add("’共启愿景——他测‘得分");
@@ -433,7 +434,7 @@ public class AdminController {
         if (bpjperson.getSuperior() != null && bpjperson.getSuperior().equals("0")) {
             bpjperson.setSuperior(null);
         }
-        if (bpjperson.getTotalscore() != null && bpjperson.getTotalscore().equals("0")) {
+        if (bpjperson.getTotalscore() != null && bpjperson.getTotalscore().equals("0.0")) {
             bpjperson.setTotalscore(null);
         }
         if (bpjperson.getEqualNm() != null && bpjperson.getEqualNm().equals("0")) {
@@ -471,6 +472,7 @@ public class AdminController {
     /**
      * 管理员上传文件，批量导入用户信息
      * 且更新leaderinfo用户信息以及score_manage表勾稽关系
+     *
      * @param file
      * @param response
      * @return
@@ -499,8 +501,8 @@ public class AdminController {
                 cell0.setCellStyle(stringStyle);
 
                 String pjId = (cell0 == null ? null : cell0.toString());
-                if(pjId.length() != 8){
-                    return ApiResultHandler.buildApiResult(10000, "该人员"+pjName+"的员工编号有误"+",错误编号为："+pjId, null);
+                if (pjId.length() != 8) {
+                    return ApiResultHandler.buildApiResult(10000, "该人员" + pjName + "的员工编号有误" + ",错误编号为：" + pjId, null);
                 }
                 String pjUass = (sheet.getRow(i).getCell(2) == null ? null : sheet.getRow(i).getCell(2).toString());
                 String pjInstname = (sheet.getRow(i).getCell(3) == null ? null : sheet.getRow(i).getCell(3).toString());
@@ -509,8 +511,8 @@ public class AdminController {
                 cell1.setCellStyle(stringStyle);
                 String bpjName = (sheet.getRow(i).getCell(5) == null ? null : sheet.getRow(i).getCell(5).toString());
                 String bpjId = (cell1 == null ? null : cell1.toString());
-                if(bpjId.length() != 8){
-                    return ApiResultHandler.buildApiResult(10000, "该人员"+bpjName+"的员工编号有误"+",错误编号为："+bpjId, null);
+                if (bpjId.length() != 8) {
+                    return ApiResultHandler.buildApiResult(10000, "该人员" + bpjName + "的员工编号有误" + ",错误编号为：" + bpjId, null);
                 }
                 String bpjUass = (sheet.getRow(i).getCell(6) == null ? null : sheet.getRow(i).getCell(6).toString());
                 String bpjInstname = (sheet.getRow(i).getCell(7) == null ? null : sheet.getRow(i).getCell(7).toString());
@@ -580,18 +582,17 @@ public class AdminController {
     }
 
     /**
-     *
      * @param rowOut 生成的excel表的行
      * @param cStyle 单元格格式
-     * @param id      评价人id
-     * @param name      评价人姓名
-     * @param uass      评价人uass
-     * @param part      评价人所属机构
-     * @param idX       被评价人id
-     * @param nameX     被评价人姓名
-     * @param uassX     被评价人uass
-     * @param partX     被评价人所属机构
-     * @param level     评价人和被评价人勾稽关系
+     * @param id     评价人id
+     * @param name   评价人姓名
+     * @param uass   评价人uass
+     * @param part   评价人所属机构
+     * @param idX    被评价人id
+     * @param nameX  被评价人姓名
+     * @param uassX  被评价人uass
+     * @param partX  被评价人所属机构
+     * @param level  评价人和被评价人勾稽关系
      */
     public void creatCellX(XSSFRow rowOut, XSSFCellStyle cStyle, String id, String name, String uass, String part, String idX,
                            String nameX, String uassX, String partX, String level) {
@@ -627,6 +628,7 @@ public class AdminController {
 
     /**
      * 行领导uass信息
+     *
      * @param name
      * @return
      */
@@ -669,6 +671,7 @@ public class AdminController {
 
     /**
      * 行领导8位编号
+     *
      * @param name
      * @return
      */
@@ -719,8 +722,8 @@ public class AdminController {
     public void downExcel(HttpServletResponse response) throws IOException {
         System.out.println("管理员下载生成勾稽关系表模板");
         logger.info("==============管理员下载生成勾稽关系表模板====================");
-        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/file2.xlsx");
-//        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板生成模板\\勾稽关系生成导入模板.xlsx");
+//        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/file2.xlsx");
+        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板生成模板\\勾稽关系生成导入模板.xlsx");
 
         try (OutputStream outputStream = response.getOutputStream()) {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -738,6 +741,7 @@ public class AdminController {
 
     /**
      * 根据上传的生成勾稽关系模板，生成勾稽关系表
+     *
      * @param file
      * @param response
      * @throws IOException
@@ -749,8 +753,8 @@ public class AdminController {
         InputStream inputStream = file.getInputStream();
 //        File file2 = new File("/home/ap/ccb/filepath/template.xlsx");
         logger.info("=============读取temple文件，生成勾稽关系表==========");
-//        File file2 = new File("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板\\导入模板.xlsx");
-        File file2 = new File("/home/ap/ccb/filepath/file.xlsx");
+        File file2 = new File("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系模板\\导入模板.xlsx");
+//        File file2 = new File("/home/ap/ccb/filepath/file.xlsx");
 
 
         FileOutputStream fileOutputStream = null;
@@ -782,143 +786,205 @@ public class AdminController {
             cell0.getCellStyle().cloneStyleFrom(cStyle);
 
             String id = (cell0 == null ? null : cell0.toString());
-            logger.info("id = "+id + "id的长度" + id.length());
-            if(id.length() != 8){
-                return ApiResultHandler.buildApiResult(10000, "该人员"+ name +"的员工编号有误"+",错误编号为："+ id, null);
+            logger.info("id = " + id + "id的长度" + id.length());
+            if (id.length() != 8) {
+                return ApiResultHandler.buildApiResult(10000, "该人员" + name + "的员工编号有误" + ",错误编号为：" + id, null);
             }
             String part = (sheet.getRow(i).getCell(3) == null ? null : sheet.getRow(i).getCell(3).toString());
             String level = (sheet.getRow(i).getCell(7) == null ? null : sheet.getRow(i).getCell(7).toString());
             String uass = (sheet.getRow(i).getCell(2) == null ? null : sheet.getRow(i).getCell(2).toString());
             Cell fcell = null;
             if (level.equals("A") && level != null) {
-                //1代表部门老总，
+                //A代表部门老总，
                 //增加行领导评价
                 String tx = (sheet.getRow(i).getCell(4) == null ? null : sheet.getRow(i).getCell(4).toString());
                 String leader1 = (sheet.getRow(i).getCell(5) == null ? null : sheet.getRow(i).getCell(5).toString());
                 String leader2 = (sheet.getRow(i).getCell(6) == null ? null : sheet.getRow(i).getCell(6).toString());
-                creatCellX(rowOut, cStyle, getID("杨军"), "杨军", getUass("杨军"), "行领导", id, name, uass, part,"2");
+                creatCellX(rowOut, cStyle, getID("杨军"), "杨军", getUass("杨军"), "行领导", id, name, uass, part, "2");
                 index++;
                 rowOut = sheetOut.createRow(index);
-                if (leader1 != null) {
-                    creatCellX(rowOut, cStyle, getID(leader1), leader1, getUass(leader1), "行领导", id, name, uass, part,"2");
-                    index++;
-                    rowOut = sheetOut.createRow(index);
-               }
-                if (leader2 != null) {
-                    creatCellX(rowOut, cStyle, getID(leader2), leader2, getUass(leader2), "行领导",id, name, uass, part, "2");
+                if (leader1 != null && !leader1.isEmpty()) {
+                    creatCellX(rowOut, cStyle, getID(leader1), leader1, getUass(leader1), "行领导", id, name, uass, part, "2");
                     index++;
                     rowOut = sheetOut.createRow(index);
                 }
-                for (int k = 1; k <= rows; k++) {
+                if (leader2 != null && !leader2.isEmpty()) {
+                    creatCellX(rowOut, cStyle, getID(leader2), leader2, getUass(leader2), "行领导", id, name, uass, part, "2");
+                    index++;
+                    rowOut = sheetOut.createRow(index);
+                }
+                for (int k = i + 1; k <= rows; k++) {
+
+                    //if (k != i) {
+                    String nameX = sheet.getRow(k).getCell(0).toString();
+
+                    Cell cell1 = sheet.getRow(k).getCell(1);
+                    cell1.setCellType(CellType.STRING);
+//                        cell1.setCellStyle(cStyle);
+                    cell1.getCellStyle().cloneStyleFrom(cStyle);
+                    String idX = cell1.toString();
+
+                    String partX = sheet.getRow(k).getCell(3).toString();
+                    String levelX = sheet.getRow(k).getCell(7).toString();
+                    String uassX = sheet.getRow(k).getCell(2).toString();
+                    String tx2 = (sheet.getRow(k).getCell(4) == null ? null : sheet.getRow(k).getCell(4).toString());
                     //给其他部门老总打分
-                    if (k != i) {
-                        String nameX = sheet.getRow(k).getCell(0).toString();
-
-                        Cell cell1 = sheet.getRow(k).getCell(1);
-                        cell1.setCellType(CellType.STRING);
-//                        cell1.setCellStyle(cStyle);
-                        cell1.getCellStyle().cloneStyleFrom(cStyle);
-                        String idX = cell1.toString();
-
-                        String partX = sheet.getRow(k).getCell(3).toString();
-                        String levelX = sheet.getRow(k).getCell(7).toString();
-                        String uassX = sheet.getRow(k).getCell(2).toString();
-                        String tx2 = (sheet.getRow(k).getCell(4) == null ? null : sheet.getRow(k).getCell(4).toString());
-                        if (level.equals(levelX) && tx.equals(tx2)) {
-                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "1");
-                            index++;
-                            rowOut = sheetOut.createRow(index);
-                        }
+                    if (level.equals(levelX) && tx.equals(tx2)) {
+                        //输出到新表，给其他同条线部门老总打分
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "1");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                        //输出到新表，被同条线其他部门老总打分
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "1");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
                     }
-                }
-                for (int k = 1; k <= rows; k++) {
-                    //给本部门副总打分
-                    if (k != i) {
-                        String nameX = sheet.getRow(k).getCell(0).toString();
-                        Cell cell1 = sheet.getRow(k).getCell(1);
-                        cell1.setCellType(CellType.STRING);
-//                        cell1.setCellStyle(cStyle);
-                        cell1.getCellStyle().cloneStyleFrom(cStyle);
-                        String idX = cell1.toString();
-                        String partX = sheet.getRow(k).getCell(3).toString();
-                        String levelX = sheet.getRow(k).getCell(7).toString();
-                        String uassX = sheet.getRow(k).getCell(2).toString();
-                        if (levelX.equals("B") && partX.equals(part)) {
-                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "2");
-                            index++;
-                            rowOut = sheetOut.createRow(index);
-                        }
+                    //给同部门副总打分
+                    if (levelX.equals("B") && partX.equals(part)) {
+                        //给同部门副总打分
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "2");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                        //被同部门副总打分
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "0");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
                     }
+                    // }
                 }
             }
+//                for (int k = 1; k <= rows; k++) {
+//                    //给本部门副总打分
+//                    if (k != i) {
+//                        String nameX = sheet.getRow(k).getCell(0).toString();
+//                        Cell cell1 = sheet.getRow(k).getCell(1);
+//                        cell1.setCellType(CellType.STRING);
+////                        cell1.setCellStyle(cStyle);
+//                        cell1.getCellStyle().cloneStyleFrom(cStyle);
+//                        String idX = cell1.toString();
+//                        String partX = sheet.getRow(k).getCell(3).toString();
+//                        String levelX = sheet.getRow(k).getCell(7).toString();
+//                        String uassX = sheet.getRow(k).getCell(2).toString();
+//                        if (levelX.equals("B") && partX.equals(part)) {
+//                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "2");
+//                            index++;
+//                            rowOut = sheetOut.createRow(index);
+//                        }
+//                    }
+//                }
+//            }
             if (level.equals("B")) {
-                //2代表部门副总
-                for (int k = 1; k <= rows; k++) {
+                //B代表部门副总
+                for (int k = i + 1; k <= rows; k++) {
+                    //if (k != i) {
+                    String nameX = sheet.getRow(k).getCell(0).toString();
+                    Cell cell1 = sheet.getRow(k).getCell(1);
+                    cell1.setCellType(CellType.STRING);
+//                        cell1.setCellStyle(cStyle);
+                    cell1.getCellStyle().cloneStyleFrom(cStyle);
+                    String idX = cell1.toString();
+                    String partX = sheet.getRow(k).getCell(3).toString();
+                    String levelX = sheet.getRow(k).getCell(7).toString();
+                    String uassX = sheet.getRow(k).getCell(2).toString();
                     //给本部门老总打分
-                    if (k != i) {
-                        String nameX = sheet.getRow(k).getCell(0).toString();
-                        Cell cell1 = sheet.getRow(k).getCell(1);
-                        cell1.setCellType(CellType.STRING);
-//                        cell1.setCellStyle(cStyle);
-                        cell1.getCellStyle().cloneStyleFrom(cStyle);
-                        String idX = cell1.toString();
-                        String partX = sheet.getRow(k).getCell(3).toString();
-                        String levelX = sheet.getRow(k).getCell(7).toString();
-                        String uassX = sheet.getRow(k).getCell(2).toString();
-                        if (levelX.equals("A") && partX.equals(part)) {
-                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
-                            index++;
-                            rowOut = sheetOut.createRow(index);
-                        }
+                    if (levelX.equals("A") && partX.equals(part)) {
+                        //给本部门老总打分
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                        //被本部门老总打分
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "2");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+
                     }
-                }
-                for (int k = 1; k <= rows; k++) {
-                    //给本部门其他副总打分
-                    if (k != i) {
-                        String nameX = sheet.getRow(k).getCell(0).toString();
-                        Cell cell1 = sheet.getRow(k).getCell(1);
-                        cell1.setCellType(CellType.STRING);
-//                        cell1.setCellStyle(cStyle);
-                        cell1.getCellStyle().cloneStyleFrom(cStyle);
-                        String idX = cell1.toString();
-                        String partX = sheet.getRow(k).getCell(3).toString();
-                        String levelX = sheet.getRow(k).getCell(7).toString();
-                        String uassX = sheet.getRow(k).getCell(2).toString();
-                        if (levelX.equals("B") && partX.equals(part)) {
-                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "1");
-                            index++;
-                            rowOut = sheetOut.createRow(index);
-                        }
+                    //给本部门其他副总评价
+                    if (levelX.equals("B") && partX.equals(part)) {
+                        //给本部门其他副总评价
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "1");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                        //被本部门其他副总评价
+                        creatCellX(rowOut, cStyle, idX, nameX, uassX, partX, id, name, uass, part, "1");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
                     }
+                    //  }
                 }
             }
+//                for (int k = 1; k <= rows; k++) {
+//                    //给本部门其他副总打分
+//                    if (k != i) {
+//                        String nameX = sheet.getRow(k).getCell(0).toString();
+//                        Cell cell1 = sheet.getRow(k).getCell(1);
+//                        cell1.setCellType(CellType.STRING);
+////                        cell1.setCellStyle(cStyle);
+//                        cell1.getCellStyle().cloneStyleFrom(cStyle);
+//                        String idX = cell1.toString();
+//                        String partX = sheet.getRow(k).getCell(3).toString();
+//                        String levelX = sheet.getRow(k).getCell(7).toString();
+//                        String uassX = sheet.getRow(k).getCell(2).toString();
+//                        if (levelX.equals("B") && partX.equals(part)) {
+//                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "1");
+//                            index++;
+//                            rowOut = sheetOut.createRow(index);
+//                        }
+//                    }
+//                }
+//            }
             if (level.equals("C")) {
-                //3代表部门科长
-                for (int k = 1; k <= rows; k++) {
-                    //给本部门其他副总打分
-                    if (k != i) {
-                        String nameX = sheet.getRow(k).getCell(0).toString();
-                        Cell cell1 = sheet.getRow(k).getCell(1);
-                        cell1.setCellType(CellType.STRING);
+                //C代表部门科长以及部门科室员工
+                for (int k = i + 1; k <= rows; k++) {
+                    // if (k != i) {
+                    String nameX = sheet.getRow(k).getCell(0).toString();
+                    Cell cell1 = sheet.getRow(k).getCell(1);
+                    cell1.setCellType(CellType.STRING);
 //                        cell1.setCellStyle(cStyle);
-                        cell1.getCellStyle().cloneStyleFrom(cStyle);
-                        String idX = cell1.toString();
-                        String partX = sheet.getRow(k).getCell(3).toString();
-                        String levelX = sheet.getRow(k).getCell(7).toString();
-                        String uassX = sheet.getRow(k).getCell(2).toString();
-                        if (levelX.equals("B") && partX.equals(part)) {
-                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
-                            index++;
-                            rowOut = sheetOut.createRow(index);
-                        }
+                    cell1.getCellStyle().cloneStyleFrom(cStyle);
+                    String idX = cell1.toString();
+                    String partX = sheet.getRow(k).getCell(3).toString();
+                    String levelX = sheet.getRow(k).getCell(7).toString();
+                    String uassX = sheet.getRow(k).getCell(2).toString();
+                    if (levelX.equals("A") && partX.equals(part)) {
+                        //给本部门老总打分
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
                     }
+                    if (levelX.equals("B") && partX.equals(part)) {
+                        //给本部门副总打分
+                        creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
+                        index++;
+                        rowOut = sheetOut.createRow(index);
+                    }
+                    // }
                 }
+
+//                for (int k = 1; k <= rows; k++) {
+//                    //给本部门其他副总打分
+//                    if (k != i) {
+//                        String nameX = sheet.getRow(k).getCell(0).toString();
+//                        Cell cell1 = sheet.getRow(k).getCell(1);
+//                        cell1.setCellType(CellType.STRING);
+////                        cell1.setCellStyle(cStyle);
+//                        cell1.getCellStyle().cloneStyleFrom(cStyle);
+//                        String idX = cell1.toString();
+//                        String partX = sheet.getRow(k).getCell(3).toString();
+//                        String levelX = sheet.getRow(k).getCell(7).toString();
+//                        String uassX = sheet.getRow(k).getCell(2).toString();
+//                        if (levelX.equals("B") && partX.equals(part)) {
+//                            creatCellX(rowOut, cStyle, id, name, uass, part, idX, nameX, uassX, partX, "0");
+//                            index++;
+//                            rowOut = sheetOut.createRow(index);
+//                        }
+//                    }
+//                }
 
 
             }
         }
-//        fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系生成\\勾稽关系表.xlsx");
-        fileOutputStream = new FileOutputStream("/home/ap/ccb/filepath/勾稽关系表.xlsx");
+        fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系生成\\勾稽关系表.xlsx");
+//        fileOutputStream = new FileOutputStream("/home/ap/ccb/filepath/勾稽关系表.xlsx");
 
         wb.write(fileOutputStream);
         fileOutputStream.close();
@@ -926,8 +992,10 @@ public class AdminController {
         return ApiResultHandler.buildApiResult(200, "成功！", null);
     }
 
+
     /**
-     * 管理员下载生成的勾稽关系表
+     * 管理员下载生成勾稽关系表模板
+     *
      * @param response
      * @throws IOException
      */
@@ -936,8 +1004,8 @@ public class AdminController {
         System.out.println("管理员下载生成的勾稽关系表");
         logger.info("==============管理员下载生成勾稽关系表模板====================");
 //        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/file2.xlsx");
-//        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系生成\\勾稽关系表.xlsx");
-        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/勾稽关系表.xlsx");
+        XSSFWorkbook hs = new XSSFWorkbook("C:\\Users\\Administrator\\Desktop\\path\\勾稽关系生成\\勾稽关系表.xlsx");
+//        XSSFWorkbook hs = new XSSFWorkbook("/home/ap/ccb/filepath/勾稽关系表.xlsx");
 
         try (OutputStream outputStream = response.getOutputStream()) {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -974,4 +1042,94 @@ public class AdminController {
         return ApiResultHandler.buildApiResult(200, "重置成功!", "leaderinfo表重置了：" + i + "行数据，scor_manage表重置了：" + j + "行数据,optioninfo表重置了：" + k + "行数据");
     }
 
+    /**
+     * 管理员导出未评价人员明细
+     *
+     * @param response
+     */
+    @GetMapping("/unSubmit")
+    public void downSubmit(HttpServletResponse response) {
+        System.out.println("管理员导出未评价人员明细");
+        logger.info("===========================管理员导出未评价人员明细==========================");
+        List<BpjPerson> bpjPersonList = adminService.downSubmit();
+        BpjPerson bp = new BpjPerson();
+        logger.info("=============开始生成excle==============");
+        XSSFWorkbook hs = new XSSFWorkbook();
+        XSSFSheet sheet = hs.createSheet("shee1");
+        XSSFRow headerRow = sheet.createRow(0);
+        headerRow.setHeightInPoints((short) 60);
+        XSSFCell cell = headerRow.createCell(0);
+        //设置第一行格式，font字体加粗，大小15
+        XSSFFont font1 = hs.createFont();
+        font1.setBold(true);
+        font1.setFontHeight((long) 15);
+        XSSFCellStyle xssfCellStyle1 = hs.createCellStyle();
+        xssfCellStyle1.setFont(font1);
+        xssfCellStyle1.setAlignment(HorizontalAlignment.CENTER);
+        xssfCellStyle1.setVerticalAlignment(VerticalAlignment.CENTER);
+        sheet.setColumnWidth(0, 15 * 256);
+        sheet.setColumnWidth(1, 15 * 256);
+        sheet.setColumnWidth(2, 15 * 256);
+        sheet.setColumnWidth(3, 15 * 256);
+
+        List<String> titleList = new LinkedList<>();
+        titleList.add("评价人");
+        titleList.add("被评价人");
+        titleList.add("得分");
+        titleList.add("提交标志");
+
+        for (int i = 0; i < titleList.size(); i++) {
+            cell = headerRow.createCell(i);
+            cell.setCellStyle(xssfCellStyle1);
+            cell.setCellValue(titleList.get(i));
+        }
+        //设置数据行单元格格式
+        XSSFFont font2 = hs.createFont();
+        font2.setFontHeight((long) 12);
+        XSSFCellStyle xssfCellStyle2 = hs.createCellStyle();
+        xssfCellStyle2.setFont(font2);
+        xssfCellStyle2.setAlignment(HorizontalAlignment.CENTER);
+        xssfCellStyle2.setVerticalAlignment(VerticalAlignment.CENTER);
+        int rowNum = 1;
+        //插入数据
+        for (int i = 0; i < bpjPersonList.size(); i++) {
+            bp = bpjPersonList.get(i);
+            setBpjperson(bp);
+            headerRow = sheet.createRow(rowNum++);
+            headerRow.setHeightInPoints((short) 30);
+
+            cell = headerRow.createCell(0);
+            cell.setCellValue(bp.getPjName());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue(bp.getBpjName());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(2);
+            cell.setCellValue(bp.getScore());
+            cell.setCellStyle(xssfCellStyle2);
+
+            cell = headerRow.createCell(3);
+            cell.setCellValue(bp.getSubmit());
+            cell.setCellStyle(xssfCellStyle2);
+
+
+        }
+        logger.info("===============excel生成结束===============");
+        try (OutputStream outputStream = response.getOutputStream()) {
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("Content-Disposition", "attachment; filename" + URLEncoder.encode("resoult.xlsx", "UTF-8"));
+            response.setCharacterEncoding("utf-8");
+            hs.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+            hs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.info("=======================管理员excel导出结束=====================");
+    }
+
 }
+

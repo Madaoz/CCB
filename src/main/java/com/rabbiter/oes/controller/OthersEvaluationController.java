@@ -62,60 +62,24 @@ public class OthersEvaluationController {
         return ApiResultHandler.success(bpjPersonList);
     }
 
-//    /**
-//     * 前端评价完，返回评价得分，数据库更新score_manage表的得分
-//     * 根据score_manage表中得分情况，更新leaderinfo表中的各级平均分，总得分以及各级评价人数和总人数
-//     *
-//     * @param otherScore
-//     * @return
-//     */
-//    @PutMapping("/othersExamsScore")
-//    public ApiResult updataOthersScore(@RequestBody OtherScore otherScore) {
-//        System.out.println("toString: =======" + otherScore.toString());
-//
-//        logger.info("==========更新score_manage表的得分信息=============");
-//        //前端评测完他人，更新数据库表score_manage
-//        int sc = othersEvaluationService.updataOthersScore(otherScore);
-//        if (sc != 0) {
-//            logger.info("更新leaderinfo表中的得分数据和评价人数数据");
-//
-//            //更新完score_manage,接着更新leaderinfo表，各级评价平均分和各级评价人数
-//            int leader = othersEvaluationService.updateLeaderInfo();
-//
-//            //更新leaderinfo表中，不同类型题型得分平均分
-//            othersEvaluationService.updateLeaderMark();
-//
-//            //更新leaderinfo表中，根据不同类型题的平均分的的总得分.
-//            othersEvaluationService.updateLeaderMarkTotal();
-//
-//            //更新leaderinfo表中总得分和总评价人数
-//            othersEvaluationService.updateNm();
-//            logger.info("=============更新scor_manage和leaderinfo表成功=============");
-//            return ApiResultHandler.buildApiResult(200, "添加成功", sc);
-//        }
-//        logger.info("=========更新失败=============");
-//        return ApiResultHandler.buildApiResult(400, "添加失败", sc);
-//    }
 
     /**
      * 单个最终提交
      * 数据库更新score_manage表中的submit字段为1（已提交）
      * 根据score_manage表中得分情况，更新leaderinfo表中的各级平均分，总得分以及各级评价人数和总人数
+     *
      * @param pjid
      * @param bpjid
      * @return
      */
     @GetMapping("/othersExamsScore/{pjid}/{bpjid}")
-    public ApiResult updataOthersScore(@PathVariable("pjid") String pjid,@PathVariable("bpjid")String bpjid) {
+    public ApiResult updataOthersScore(@PathVariable("pjid") String pjid, @PathVariable("bpjid") String bpjid) {
         logger.info("==========单个提交，更新score_manage表的submit=============");
 
         //前端评测完他人，更新数据库表score_manage
-        int sc = othersEvaluationService.updataOthersScore(pjid,bpjid);
+        int sc = othersEvaluationService.updataOthersScore(pjid, bpjid);
         if (sc != 0) {
             logger.info("更新leaderinfo表中的得分数据和评价人数数据");
-
-            updateData();
-
             logger.info("=============更新scor_manage和leaderinfo表成功=============");
             return ApiResultHandler.buildApiResult(200, "添加成功", sc);
         }
@@ -126,25 +90,24 @@ public class OthersEvaluationController {
     /**
      * 汇总提交，将score_manage表中的submit标志改为1
      * 以及更新leaderinfo表中的数据
+     *
      * @param pjid
      * @return
      */
     @GetMapping("/allSubmit/{pjid}")
-    public ApiResult updateSubmit(@PathVariable String pjid){
+    public ApiResult updateSubmit(@PathVariable String pjid) {
 
         logger.info("==========汇总提交，更新score_manage表的submit=============");
 
         List<Option> options = othersEvaluationService.findBpjId(pjid);
         int i = 0;
         String bpjid;
-        for(Option option : options){
+        for (Option option : options) {
             bpjid = options.get(i).getBpjId();
-            othersEvaluationService.updateSubmit(pjid,bpjid);
-            updateData();
+            othersEvaluationService.updateSubmit(pjid, bpjid);
             i++;
         }
         return ApiResultHandler.buildApiResult(200, "添加成功", null);
-
 
 
     }
@@ -152,7 +115,8 @@ public class OthersEvaluationController {
     /**
      * 更新各个数据表
      */
-    public void updateData(){
+    @PostMapping("/updateData")
+    public ApiResult updateData() {
         //更新完score_manage,接着更新leaderinfo表，各级评价平均分和各级评价人数
         int leader = othersEvaluationService.updateLeaderInfo();
 
@@ -162,8 +126,14 @@ public class OthersEvaluationController {
         //更新leaderinfo表中，根据不同类型题的平均分的的总得分.
         othersEvaluationService.updateLeaderMarkTotal();
 
-        //更新leaderinfo表中总得分和总评价人数
-        othersEvaluationService.updateNm();
+        //更新leaderinfo表中总评价人数
+        othersEvaluationService.updateNum();
+
+        //更新leaderinfo表中总得分
+        int a = othersEvaluationService.updateNm();
+        logger.info("info = " + a);
+
+        return ApiResultHandler.buildApiResult(200, "更新成功", null);
     }
 
 
@@ -171,7 +141,7 @@ public class OthersEvaluationController {
      * 目录"/option"为每次评价完后的保存功能
      * 更新或插入选项表optioninfo表
      *
-     * @param otherscore
+     * @param otherScore
      * @return
      */
     @PutMapping("/option")
@@ -179,8 +149,8 @@ public class OthersEvaluationController {
 
         logger.info("===========插入或更新optioninfo表==========" + otherScore.toString());
         int i = 0;
-        List<Option>  oc = othersEvaluationService.findOption(otherScore.getPjid(), otherScore.getBpjid());
-        if (oc == null || oc.size()==0) {
+        List<Option> oc = othersEvaluationService.findOption(otherScore.getPjid(), otherScore.getBpjid());
+        if (oc == null || oc.size() == 0) {
             for (i = 0; i < otherScore.getOptionList().size(); i++) {
                 System.out.println("===========oc为空=============");
                 //optioninfo表中无对应关系，新增对应关系，且将题目及选项等信息写入

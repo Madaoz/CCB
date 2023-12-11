@@ -7,6 +7,8 @@ public class BpjPerson {
      */
     private String pjId;
 
+    private String pjName;
+
     private String bpjName;
 
     private String bpjId;
@@ -69,6 +71,14 @@ public class BpjPerson {
     private String selfD;
 
     private String selfE;
+
+    public String getPjName() {
+        return pjName;
+    }
+
+    public void setPjName(String pjName) {
+        this.pjName = pjName;
+    }
 
     public String getSubmit() {
         return submit;

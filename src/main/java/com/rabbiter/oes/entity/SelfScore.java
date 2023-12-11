@@ -84,6 +84,7 @@ public class SelfScore {
 
     @Override
     public String toString() {
-        return "info{   " + "    " + "name= " + name + "    " + "userId= " + userId + "    " + "selfevaluation= " + selfevaluation + '}';
+        return "SelfScore-info{   " + "    " + "name= " + name + "    " + "userId= " + userId + "    " + "selfevaluation= " + selfevaluation +
+                "  selfA = " + selfA + "  selfB = " + selfB + "  selfC = " + selfC + "  selfD = " + selfD + "  selfE = " + selfE + '}';
     }
 }

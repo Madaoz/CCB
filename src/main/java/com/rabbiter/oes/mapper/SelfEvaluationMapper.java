@@ -12,6 +12,6 @@ public interface SelfEvaluationMapper {
     List<SelfScore> findSelf(String userId);
 
     //更新表中的自评得分
-    @Update("update leaderinfo set selfevaluation = #{selfevaluation} , selfA = #{selfA},selfB = #{selfB},selfC = #{selfC},selfD = #{selfD},selfE = #{selfE} where id = #{userId}")
+    @Update("update leaderinfo set selfevaluation = ROUND(#{selfevaluation},1) , selfA = ROUND(#{selfA},1), selfB = ROUND(#{selfB},1),selfC = ROUND(#{selfC},1),selfD = ROUND(#{selfD},1) , selfE = ROUND(#{selfE},1) where id = #{userId}")
     int updateScore(SelfScore selfScore);
 }

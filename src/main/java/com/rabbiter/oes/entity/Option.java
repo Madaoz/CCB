@@ -81,4 +81,11 @@ public class Option {
     public void setOption(int option) {
         this.option = option;
     }
+
+    @Override
+    public String toString() {
+        return "option-info { " + "pjId = " + pjId + "  bpjId = " + bpjId + "  quId = " + quId + "  qu = " + qu + "  quMark = " + quMark +
+                "  quMarkName = " + quMarkName + "  option = " + option + "  score = " + score + "  }";
+    }
+
 }

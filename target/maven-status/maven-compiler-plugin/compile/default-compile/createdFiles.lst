@@ -21,6 +21,7 @@ com\rabbiter\oes\serviceimpl\AdminServiceImpl.class
 com\rabbiter\oes\controller\LoginController.class
 com\rabbiter\oes\controller\OthersEvaluationController.class
 com\rabbiter\oes\config\GlobalExceptionHandler.class
+com\rabbiter\oes\entity\Option.class
 com\rabbiter\oes\controller\AdminController.class
 com\rabbiter\oes\service\UserInfoService.class
 com\rabbiter\oes\serviceimpl\LoginServiceImpl.class
@@ -28,9 +29,13 @@ com\rabbiter\oes\entity\Question.class
 com\rabbiter\oes\mapper\UserInfoMapper.class
 com\rabbiter\oes\service\SelfEvaluationService.class
 com\rabbiter\oes\config\DataSourceConfiguration.class
+com\rabbiter\oes\mapper\ResetScoreMapper.class
+com\rabbiter\oes\service\ResetScoreService.class
+com\rabbiter\oes\serviceimpl\ResetScoreImpl.class
 com\rabbiter\oes\entity\Login.class
 com\rabbiter\oes\serviceimpl\UserInfoImpl.class
 com\rabbiter\oes\entity\OtherScore.class
+com\rabbiter\oes\controller\ResetScoreController.class
 com\rabbiter\oes\entity\BpjPerson.class
 com\rabbiter\oes\serviceimpl\QuestionImpl.class
 com\rabbiter\oes\util\ApiResultHandler.class

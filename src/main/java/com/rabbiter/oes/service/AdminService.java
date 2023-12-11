@@ -46,4 +46,6 @@ public interface AdminService{
     int resetScoreManage();
 
     int resetOptionInfo();
+
+    List<BpjPerson> downSubmit();
 }

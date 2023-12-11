@@ -40,6 +40,10 @@ public class OthersEvaluationImpl implements OthersEvaluationService {
         return othersEvaluationMapper.updataOthersScore(pjid,bpjid);
     }
 
+    @Override
+    public int updateNum(){
+        return othersEvaluationMapper.updateNum();
+    }
 
     @Override
     public int updateNm(){

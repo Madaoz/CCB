@@ -1,37 +1,42 @@
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\LoginController.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\QuestionService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\QuestionImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\UserInfoMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\OnlineExamSystemApplication.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\OthersEvaluationMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\AdminController.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\config\GlobalExceptionHandler.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\User.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\OthersEvaluationImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\Login.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\Question.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\AdminMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\config\DataSourceConfiguration.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\interceptor\LoginInterceptor.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\LoginServiceImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\OthersEvaluationController.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\UserInfoController.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\SelfScore.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\QuestionMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\SelfEvaluationService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\BpjPerson.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\SelfEvaluationImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\LoginMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\UserInfoImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\OtherScore.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\TestQuestionController.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\mapper\SelfEvaluationMapper.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\AdminService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\UserInfoService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\entity\ApiResult.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\OthersEvaluationService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\serviceimpl\AdminServiceImpl.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\util\ApiResultHandler.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\service\LoginService.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\config\MvcConfig.java
-C:\Users\Administrator\Desktop\code\OnlineExamSystem-v1.0\src\main\java\com\rabbiter\oes\controller\SelfEvaluationController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\OtherScore.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\OthersEvaluationMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\QuestionImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\SelfEvaluationImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\SelfEvaluationController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\OthersEvaluationController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\config\GlobalExceptionHandler.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\UserInfoMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\ResetScoreImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\ResetScoreController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\UserInfoController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\SelfScore.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\config\MvcConfig.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\config\DataSourceConfiguration.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\LoginMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\interceptor\LoginInterceptor.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\OthersEvaluationService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\LoginServiceImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\LoginService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\AdminService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\QuestionService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\LoginController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\OnlineExamSystemApplication.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\util\ApiResultHandler.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\TestQuestionController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\controller\AdminController.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\Question.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\ResetScoreMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\SelfEvaluationMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\QuestionMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\ResetScoreService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\OthersEvaluationImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\UserInfoImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\ApiResult.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\UserInfoService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\Option.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\service\SelfEvaluationService.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\serviceimpl\AdminServiceImpl.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\mapper\AdminMapper.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\User.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\BpjPerson.java
+C:\Users\Administrator\Desktop\code\test - 副本\src\main\java\com\rabbiter\oes\entity\Login.java

@@ -16,8 +16,10 @@ public interface OthersEvaluationService {
     int updataOthersScore(String pjid,String bpjid);
 
     int updateLeaderInfo();
-    int updateNm();
 
+    int updateNum();
+
+    int updateNm();
 
     int updateLeaderMark();
 

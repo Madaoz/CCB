@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="OnlineExamSystem-v1.0" />
-        <module name="OnlineExamSystemApi" />
-        <module name="OnlineExamSystemApi - idea" />
         <module name="test" />
+        <module name="test - 副本" />
+        <module name="OnlineExamSystem-v1.0" />
+        <module name="OnlineExamSystemApi - idea" />
+        <module name="test-1211" />
         <module name="OnlineExamSystemApi-idea" />
+        <module name="OnlineExamSystemApi" />
       </profile>
     </annotationProcessing>
   </component>
@@ -21,6 +23,8 @@
       <module name="OnlineExamSystemApi - idea" options="-parameters" />
       <module name="OnlineExamSystemApi-idea" options="-parameters" />
       <module name="test" options="-parameters" />
+      <module name="test - 副本" options="-parameters" />
+      <module name="test-1211" options="-parameters" />
     </option>
   </component>
 </project>

@@ -76,4 +76,7 @@ public interface AdminMapper {
     @Delete("delete from optioninfo")
     int resetOptionInfo();
 
+    @Select("select pj_name pjName,bpj_name bpjName,score,submit from score_manage where submit = 0")
+    List<BpjPerson> downSubmit();
+
 }

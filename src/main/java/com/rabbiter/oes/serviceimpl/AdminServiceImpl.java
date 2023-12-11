@@ -116,4 +116,9 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.resetOptionInfo();
     }
 
+    @Override
+    public List<BpjPerson> downSubmit(){
+        return adminMapper.downSubmit();
+    }
+
 }
